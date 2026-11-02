@@ -6,7 +6,7 @@ author: MEGA Engineering Team
 category: CO2 Recovery
 description: Example draft demonstrating how to format and prepare a technical
   article in the MEGA Engineering blog editor.
-cover: /NEWMEGA/media/blog/high-gravity-fermentation.webp
+cover: /NEWMEGA/media/blog/high-gravity-fermentation.gif
 ---
 ```
 <!-- Mega Engineering | High-Gravity Fermentation | paste into a WordPress "Custom HTML" block -->
