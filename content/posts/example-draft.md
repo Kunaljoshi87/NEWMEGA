@@ -1,5 +1,5 @@
 ---
-title: Example Blog Draft - Replace Before Publishing
+title: High-gravity-fermentation
 published: true
 date: 2026-11-02
 author: MEGA Engineering Team
