@@ -1,26 +1,1226 @@
 ---
 title: Example Blog Draft - Replace Before Publishing
-published: false
-date: '2026-11-02'
+published: true
+date: 2026-11-02
 author: MEGA Engineering Team
-category: Engineering Insights
-description: Example draft demonstrating how to format and prepare a technical article in the MEGA Engineering blog editor.
-cover: ''
+category: CO2 Recovery
+description: Example draft demonstrating how to format and prepare a technical
+  article in the MEGA Engineering blog editor.
+cover: /NEWMEGA/media/blog/high-gravity-fermentation.webp
 ---
-# Replace this draft with your original technical article
+<!-- Mega Engineering | High-Gravity Fermentation | paste into a WordPress "Custom HTML" block -->
 
-Write an introduction explaining the engineering challenge, followed by your process and verified results.
+<div id="mega-hgf">
 
-## Project context
+<style>
 
-Describe feedstock, plant capacity, project location and technology accurately.
+#mega-hgf{
 
-## Engineering considerations
+  /* Mega Engineering brand colours (sampled from the logo) */
 
-- **Design basis:** Add verified process and performance parameters.
-- **Scope:** Describe equipment, utilities and integration.
-- **Outcome:** Add project results that the company can substantiate.
+  --mh-primary:#36618e;      /* logo dark blue: headings, links */
 
-## Need a similar solution?
+  --mh-sky:#489dd3;          /* logo light blue */
 
-[Contact MEGA Engineering](/NEWMEGA/contact-mega-engineering-epc-company/).
+  --mh-accent:#92ac41;       /* logo green: highlights */
+
+  --mh-ink:#25262a;          /* logo charcoal: body text */
+
+  --mh-grey:#939496;         /* logo grey */
+
+  --mh-muted:#5b5d62;        /* secondary text */
+
+  --mh-panel:#eef3f8;        /* tinted panels */
+
+  --mh-line:#d6dbe1;         /* borders */
+
+  --mh-ng:#92ac41; --mh-hg:#489dd3; --mh-vhg:#36618e;
+
+  color:var(--mh-ink);line-height:1.7;font-size:17px;max-width:820px;margin:0 auto;
+
+}
+
+#mega-hgf *{box-sizing:border-box}
+
+#mega-hgf h2{color:var(--mh-primary);font-size:1.6em;line-height:1.25;margin:2.2em 0 .6em;scroll-margin-top:90px}
+
+#mega-hgf h3{color:var(--mh-primary);font-size:1.2em;line-height:1.3;margin:1.6em 0 .5em;scroll-margin-top:90px}
+
+#mega-hgf p{margin:0 0 1em}
+
+#mega-hgf a{color:var(--mh-primary);text-decoration:underline;text-underline-offset:2px}
+
+#mega-hgf .mh-lead{font-size:1.15em;color:var(--mh-ink);border-left:4px solid var(--mh-accent);padding-left:1em;margin:1em 0 1.5em}
+
+#mega-hgf .mh-note{background:var(--mh-panel);border-radius:6px;padding:.9em 1.1em;font-size:.93em;color:var(--mh-muted)}
+
+#mega-hgf .mh-src{font-size:.88em;color:var(--mh-muted)}
+
+#mega-hgf .mh-table{overflow-x:auto;margin:1em 0 1.4em}
+
+#mega-hgf table{border-collapse:collapse;width:100%;font-size:.94em;min-width:420px}
+
+#mega-hgf th,#mega-hgf td{border:1px solid var(--mh-line);padding:.55em .75em;text-align:left;vertical-align:top}
+
+#mega-hgf thead th{background:var(--mh-primary);color:#fff;font-weight:600}
+
+#mega-hgf tbody tr:nth-child(even) td{background:#f7fafb}
+
+#mega-hgf .mh-eq{font-family:Georgia,serif;font-size:1.25em;text-align:center;background:var(--mh-panel);padding:.8em;border-radius:6px;margin:1em 0}
+
+/* contents */
+
+#mega-hgf [details.mh](http://details.mh)-toc{border:1px solid var(--mh-line);border-radius:6px;padding:.2em 1em;margin:1.2em 0 2em}
+
+#mega-hgf [details.mh](http://details.mh)-toc summary{cursor:pointer;font-weight:600;color:var(--mh-primary);padding:.6em 0}
+
+#mega-hgf .mh-toc ol{margin:.2em 0 1em;padding-left:1.3em}
+
+#mega-hgf .mh-toc li{margin:.25em 0}
+
+#mega-hgf .mh-toc a{text-decoration:none}
+
+#mega-hgf .mh-toc a:hover{text-decoration:underline}
+
+/* calculator */
+
+#mega-hgf .mh-calc{border:2px solid var(--mh-primary);border-radius:10px;padding:1.3em 1.3em 1em;margin:1.6em 0 2em;background:#fff}
+
+#mega-hgf .mh-calc h3{margin-top:0}
+
+#mega-hgf .mh-ctl{margin:1em 0}
+
+#mega-hgf .mh-ctl label{display:flex;justify-content:space-between;font-weight:600;font-size:.95em;margin-bottom:.3em}
+
+#mega-hgf .mh-ctl output{color:var(--mh-primary);white-space:nowrap;padding-left:.5em}
+
+#mega-hgf input[type=range]{width:100%;accent-color:var(--mh-sky);height:28px}
+
+#mega-hgf .mh-band{position:relative;height:14px;border-radius:7px;display:flex;overflow:hidden;margin:.4em 0 .2em}
+
+#mega-hgf .mh-band span{display:block;height:100%}
+
+#mega-hgf .mh-band-lbl{display:flex;font-size:.78em;color:var(--mh-muted)}
+
+#mega-hgf .mh-band-lbl span{text-align:center}
+
+#mega-hgf .mh-marker{position:absolute;top:-4px;width:4px;height:22px;background:var(--mh-ink);border-radius:2px;transform:translateX(-2px);transition:left .15s}
+
+#mega-hgf .mh-res{display:grid;grid-template-columns:repeat(3,1fr);gap:.7em;margin-top:1.1em}
+
+#mega-hgf .mh-res div{background:var(--mh-panel);border-radius:8px;padding:.7em .8em}
+
+#mega-hgf .mh-res b{display:block;font-size:1.45em;color:var(--mh-primary);line-height:1.2}
+
+#mega-hgf .mh-res small{color:var(--mh-muted);font-size:.8em;line-height:1.3;display:block}
+
+#mega-hgf .mh-class{display:inline-block;color:#fff;border-radius:4px;padding:.1em .55em;font-weight:600;font-size:.9em}
+
+#mega-hgf .mh-calc .mh-src{margin:.9em 0 0}
+
+/* stress tabs */
+
+#mega-hgf .mh-tabs{display:flex;flex-wrap:wrap;gap:.45em;margin:1em 0 .6em}
+
+#mega-hgf .mh-tabs button{font:inherit;font-size:.92em;border:1px solid var(--mh-line);background:#fff;color:var(--mh-ink);padding:.45em .9em;border-radius:20px;cursor:pointer}
+
+#mega-hgf .mh-tabs button[aria-selected=true]{background:var(--mh-primary);border-color:var(--mh-primary);color:#fff}
+
+#mega-hgf .mh-tabs button:focus-visible,#mega-hgf .mh-step button:focus-visible,#mega-hgf summary:focus-visible{outline:3px solid var(--mh-accent);outline-offset:2px}
+
+#mega-hgf .mh-panel{background:var(--mh-panel);border-radius:8px;padding:1em 1.2em;min-height:4.5em}
+
+#mega-hgf .mh-panel h4{margin:0 0 .3em;color:var(--mh-primary);font-size:1.05em}
+
+#mega-hgf .mh-panel p{margin:0}
+
+/* bars */
+
+#mega-hgf .mh-bars{margin:1em 0 1.4em}
+
+#mega-hgf .mh-bar-row{margin:.7em 0}
+
+#mega-hgf .mh-bar-row > div:first-child{font-weight:600;font-size:.92em}
+
+#mega-hgf .mh-bar{display:flex;align-items:center;gap:.5em;font-size:.85em;margin:.2em 0}
+
+#mega-hgf .mh-bar i{display:block;height:12px;border-radius:6px;transition:width .8s ease}
+
+#mega-hgf .mh-bar em{font-style:normal;color:var(--mh-muted);min-width:5.5em}
+
+#mega-hgf .mh-legend{display:flex;gap:1.2em;font-size:.85em;color:var(--mh-muted)}
+
+#mega-hgf .mh-legend span:before{content:"";display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:.35em;vertical-align:-1px;background:var(--c)}
+
+/* benefits */
+
+#mega-hgf .mh-grid{display:grid;grid-template-columns:1fr 1fr;gap:1em;margin:1em 0}
+
+#mega-hgf .mh-grid > div{border-top:3px solid var(--mh-accent);background:#fafcfd;padding:.2em 1em .4em}
+
+#mega-hgf .mh-grid h3{margin-top:.7em;font-size:1.08em}
+
+#mega-hgf .mh-grid p{font-size:.95em}
+
+/* accordions */
+
+#mega-hgf [details.mh](http://details.mh)-acc{border-bottom:1px solid var(--mh-line)}
+
+#mega-hgf [details.mh](http://details.mh)-acc:first-of-type{border-top:1px solid var(--mh-line)}
+
+#mega-hgf [details.mh](http://details.mh)-acc summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:1em;padding:.2em 0}
+
+#mega-hgf [details.mh](http://details.mh)-acc summary::-webkit-details-marker{display:none}
+
+#mega-hgf [details.mh](http://details.mh)-acc summary h3{margin:.7em 0;font-size:1.1em}
+
+#mega-hgf [details.mh](http://details.mh)-acc summary:after{content:"+";font-size:1.5em;color:var(--mh-accent);font-weight:300;line-height:1}
+
+#mega-hgf [details.mh](http://details.mh)-acc[open] summary:after{content:"\2212"}
+
+#mega-hgf [details.mh](http://details.mh)-acc > div{padding:0 0 .8em}
+
+#mega-hgf .mh-acc-ctl{text-align:right;font-size:.88em;margin-bottom:.4em}
+
+#mega-hgf .mh-acc-ctl button{font:inherit;background:none;border:0;color:var(--mh-primary);text-decoration:underline;cursor:pointer;padding:0}
+
+/* stepper */
+
+#mega-hgf .mh-steps{list-style:none;margin:1em 0;padding:0;counter-reset:s}
+
+#mega-hgf .mh-step{position:relative;padding-left:3.2em;margin:0;padding-bottom:.6em}
+
+#mega-hgf .mh-step:before{counter-increment:s;content:counter(s);position:absolute;left:0;top:.35em;width:2.2em;height:2.2em;border-radius:50%;background:#fff;border:2px solid var(--mh-primary);color:var(--mh-primary);font-weight:700;display:flex;align-items:center;justify-content:center;transition:background .2s,color .2s}
+
+#mega-hgf .mh-step:after{content:"";position:absolute;left:1.05em;top:2.7em;bottom:-.2em;width:2px;background:var(--mh-line)}
+
+#mega-hgf .mh-step:last-child:after{display:none}
+
+#mega-hgf .[mh-step.mh](http://mh-step.mh)-done:before{background:var(--mh-accent);border-color:var(--mh-accent);color:#fff;content:"\2713"}
+
+#mega-hgf .mh-step button{font:inherit;font-weight:600;text-align:left;background:none;border:0;color:var(--mh-ink);cursor:pointer;padding:.55em 0;width:100%}
+
+#mega-hgf .mh-step p{margin:0 0 .4em;color:var(--mh-muted)}
+
+#mega-hgf .mh-step-prog{font-size:.88em;color:var(--mh-muted)}
+
+/* cta */
+
+#mega-hgf .mh-tag{text-align:center;font-style:italic;font-weight:700;font-size:1.2em;color:var(--mh-primary);margin:2em 0}
+
+#mega-hgf .mh-cta{background:linear-gradient(120deg,var(--mh-primary),#2c5079);color:#fff;border-radius:10px;padding:1.5em 1.6em;margin:2em 0}
+
+#mega-hgf .mh-cta h2{color:#fff;margin-top:0}
+
+#mega-hgf .mh-cta [a.mh](http://a.mh)-btn{display:inline-block;background:var(--mh-accent);color:#1b2410;text-decoration:none;font-weight:700;padding:.65em 1.4em;border-radius:6px;margin-top:.3em}
+
+#mega-hgf [details.mh](http://details.mh)-refs summary{cursor:pointer;font-weight:600;color:var(--mh-primary);padding:.5em 0}
+
+#mega-hgf [details.mh](http://details.mh)-refs ol{font-size:.9em;color:var(--mh-muted)}
+
+#mega-hgf .mh-brand{display:flex;align-items:center;justify-content:space-between;gap:1em;flex-wrap:wrap;padding:.4em 0 .9em}
+
+#mega-hgf .mh-brand img{width:210px;height:auto;display:block}
+
+#mega-hgf .mh-brand span{font-size:.85em;color:var(--mh-muted)}
+
+#mega-hgf .mh-swoosh{display:flex;height:5px;border-radius:3px;overflow:hidden;margin:0 0 1.4em}
+
+#mega-hgf .mh-swoosh i{display:block;height:100%}
+
+#mega-hgf .mh-about{display:flex;align-items:center;gap:1.4em;border-top:1px solid var(--mh-line);padding-top:1.4em;margin-top:2em;flex-wrap:wrap}
+
+#mega-hgf .mh-about img{width:170px;height:auto;display:block}
+
+#mega-hgf .mh-about p{flex:1;min-width:220px;margin:0;font-size:.92em;color:var(--mh-muted)}
+
+#mega-hgf .mh-byline{font-size:.88em;color:var(--mh-muted);margin:-.6em 0 1.2em}
+
+#mega-hgf .mh-answer{background:var(--mh-panel);border-left:4px solid var(--mh-primary);border-radius:0 8px 8px 0;padding:1em 1.2em;margin:0 0 1.2em}
+
+#mega-hgf .mh-answer h2{font-size:1.15em;margin:0 0 .4em}
+
+#mega-hgf .mh-answer p{margin:0}
+
+#mega-hgf .mh-keys{border:1px solid var(--mh-line);border-top:4px solid var(--mh-accent);border-radius:8px;padding:.9em 1.2em .4em;margin:0 0 1.2em}
+
+#mega-hgf .mh-keys h2{font-size:1.15em;margin:0 0 .5em}
+
+#mega-hgf .mh-keys ul{margin:0 0 .6em;padding-left:1.2em}
+
+#mega-hgf .mh-keys li{margin:.35em 0}
+
+#mega-hgf .mh-panel + .mh-panel{margin-top:.6em}
+
+#mega-hgf .mh-js .mh-panel[hidden]{display:none}
+
+#mega-hgf .mh-faq h3{font-size:1.08em;margin:1.4em 0 .35em}
+
+@media (max-width:640px){
+
+  #mega-hgf{font-size:16px}
+
+  #mega-hgf .mh-grid{grid-template-columns:1fr}
+
+  #mega-hgf .mh-res{grid-template-columns:1fr 1fr}
+
+  #mega-hgf .mh-res div:first-child{grid-column:1/-1}
+
+}
+
+@media (prefers-reduced-motion:reduce){#mega-hgf *{transition:none!important}}
+
+</style>
+
+<div class="mh-brand"><a href="[https://www.mega.tc](https://www.mega.tc)" style="text-decoration:none"><img src="data:image/png;base64,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" alt="Mega Engineering" width="210" height="90"></a><span>Technical insights for distillery and biofuel plants</span></div>
+
+<div class="mh-swoosh" aria-hidden="true"><i style="width:40%;background:var(--mh-sky)"></i><i style="width:35%;background:var(--mh-primary)"></i><i style="width:25%;background:var(--mh-accent)"></i></div>
+
+<p class="mh-byline">By <strong>Mr Arnab Nandi</strong>, Alcohol Technologist. Published <time datetime="2026-10-24">24 October 2026</time>.</p>
+
+<p class="mh-lead">Can a grain distillery produce more ethanol from the same fermenters while using less water and steam? High-gravity fermentation says yes, provided the yeast is looked after properly.</p>
+
+<div class="mh-answer">
+
+<h2>What is high-gravity fermentation?</h2>
+
+<p><strong>High-gravity fermentation (HGF) is an ethanol production method in which yeast ferments a more concentrated mash, typically 170–250 g/L of fermentable sugar, to produce a stronger wash.</strong> Above 250 g/L it is called very-high-gravity (VHG) fermentation. Grain distilleries use it to make more ethanol per batch while using less water and distillation steam.</p>
+
+</div>
+
+<div class="mh-keys">
+
+<h2>Key takeaways</h2>
+
+<ul>
+
+<li>Normal-gravity mash holds about 150–170 g/L sugar, high gravity 170–250 g/L, and very high gravity more than 250 g/L.</li>
+
+<li>Commercial dry-grind corn plants commonly reach 14–17% v/v ethanol at 30–35% w/w mash solids; laboratory wheat-mash studies have reached about 21% v/v.</li>
+
+<li>The main benefits are more ethanol per fermenter, lower water use per litre and lower distillation steam demand.</li>
+
+<li>Most high-gravity problems come from yeast stress: osmotic pressure, ethanol toxicity, nitrogen shortage, heat and bacterial contamination.</li>
+
+<li>Free amino nitrogen (FAN) is often the hidden bottleneck; supplying urea, ammonia or protease-released nitrogen can shorten fermentation markedly.</li>
+
+<li>The best operating point is the most profitable and reliable one, not the highest ethanol concentration, and plants should increase solids step by step.</li>
+
+</ul>
+
+</div>
+
+<details class="mh-toc" open>
+
+<summary>In this article</summary>
+
+<ol>
+
+<li><a href="#mh-intro">Introduction</a></li>
+
+<li><a href="#mh-what">How high-gravity fermentation is classified</a></li>
+
+<li><a href="#mh-calc">Try it: ethanol potential calculator</a></li>
+
+<li><a href="#mh-yeast">Yeast activity under high gravity</a></li>
+
+<li><a href="#mh-research">What the research shows</a></li>
+
+<li><a href="#mh-benefits">How HGF improves plant performance</a></li>
+
+<li><a href="#mh-tech">Technical considerations for industrial plants</a></li>
+
+<li><a href="#mh-steps">A step-wise approach to implementation</a></li>
+
+<li><a href="#mh-econ">Economic evaluation</a></li>
+
+<li><a href="#mh-future">Future opportunities</a></li>
+
+<li><a href="#mh-conclusion">Conclusion</a></li>
+
+<li><a href="#mh-faq">Frequently asked questions</a></li>
+
+</ol>
+
+</details>
+
+<h2 id="mh-intro">Introduction</h2>
+
+<p>High-gravity fermentation (HGF) has become an important process-intensification strategy in the grain-based ethanol industry. As distilleries seek to improve production capacity, reduce energy consumption and optimise the utilisation of existing infrastructure, increasing the alcohol concentration by increasing fermentable substrate in the fermentation medium offers a promising approach.</p>
+
+<p>In conventional grain ethanol production, starch-rich feedstocks such as corn, broken rice, wheat, sorghum and other cereals are processed through milling, liquefaction and saccharification before or during fermentation. Fermentation is conducted with strains of the yeast <em>Saccharomyces cerevisiae</em>, usually specially propagated for the purpose, which convert the fermentable sugars released from starch into ethanol and carbon dioxide.</p>
+
+<p>High-gravity fermentation involves processing a more concentrated substrate, allowing the production of a higher ethanol concentration in the fermented wash. When the process is properly designed, this can reduce the volume of effluent per litre of ethanol produced and potentially improve the productivity of the fermentation, distillation and other downstream sections.</p>
+
+<p>The real challenge, however, is to increase grain loading without compromising yeast activity, starch conversion efficiency, fermentation completion or overall plant economics.</p>
+
+<h2 id="mh-what">How is high-gravity fermentation classified?</h2>
+
+<p>High-gravity fermentation is defined by the concentration of fermentable sugars or dissolved solids in the fermentation medium. The precise classification varies according to the substrate and industrial application. Its appeal is that it gets more out of the same plant. By fermenting a richer substrate, a distillery reaches a higher final ethanol concentration and saves process water and energy. Because fermenter volume is used more efficiently, these gains are often possible without major changes to existing equipment.</p>
+
+<p>For grain-based ethanol production, a useful approximate classification is:</p>
+
+<div class="mh-table"><table>
+
+<thead><tr><th>Type</th><th>Fermentable sugar concentration (g/L)</th></tr></thead>
+
+<tbody>
+
+<tr><td>Normal-gravity fermentation</td><td>150–170</td></tr>
+
+<tr><td>High-gravity fermentation</td><td>170–250</td></tr>
+
+<tr><td>Very-high-gravity fermentation</td><td>More than 250</td></tr>
+
+</tbody></table></div>
+
+<p>These numbers are indicative only, as fermentation is a biochemical process. The physical properties of the mash are also important for high-gravity fermentation.</p>
+
+<p>High-gravity fermentation generally targets increased ethanol concentration in the fermented mash, while very-high-gravity fermentation pushes sugar loading further, often with the objective of producing more than 15–16% v/v ethanol.</p>
+
+<p>For context, modern dry-grind corn ethanol plants commonly run with mash solids of roughly 30–35% w/w and produce fermented beer containing approximately 14–17% v/v ethanol. Grain distilleries processing broken rice, maize or sorghum can operate in a similar range, but the practical limit depends heavily on the starch, protein and fibre content of the feedstock and on how viscous the mash becomes at higher loading.</p>
+
+<div class="mh-calc" id="mh-calc">
+
+<h3>Try it: ethanol potential calculator</h3>
+
+<p style="font-size:.95em;color:var(--mh-muted)">Move the sliders to see the gravity class and the ethanol a given sugar loading could produce.</p>
+
+<div class="mh-ctl">
+
+<label for="mh-sugar">Fermentable sugar (glucose equivalent) <output id="mh-sugar-o">250 g/L</output></label>
+
+<input type="range" id="mh-sugar" min="120" max="320" step="5" value="250">
+
+<div class="mh-band" aria-hidden="true">
+
+<span style="width:20%;background:#c9cacc"></span><span style="width:10%;background:var(--mh-ng)"></span><span style="width:40%;background:var(--mh-hg)"></span><span style="width:30%;background:var(--mh-vhg)"></span>
+
+<i class="mh-marker" id="mh-marker"></i>
+
+</div>
+
+<div class="mh-band-lbl" aria-hidden="true"><span style="width:20%">Low</span><span style="width:10%">NG</span><span style="width:40%">High gravity</span><span style="width:30%">Very high</span></div>
+
+</div>
+
+<div class="mh-ctl">
+
+<label for="mh-eff">Fermentation efficiency <output id="mh-eff-o">90%</output></label>
+
+<input type="range" id="mh-eff" min="80" max="100" step="1" value="90">
+
+</div>
+
+<div class="mh-res" aria-live="polite">
+
+<div><small>Gravity class</small><b><span class="mh-class" id="mh-cls">High gravity</span></b></div>
+
+<div><small>Expected ethanol</small><b id="mh-gl">115.0 g/L</b></div>
+
+<div><small>Expected strength</small><b id="mh-vv">14.6% v/v</b></div>
+
+</div>
+
+<p class="mh-src">Theoretical yield: 0.511 g ethanol per g glucose; ethanol density 0.789 kg/L at 20 °C. Theoretical maximum at this loading: <strong id="mh-th">127.8 g/L (16.2% v/v)</strong>. Illustrative only: it ignores mash volume, solids and starch conversion efficiency.</p>
+
+</div>
+
+<h2 id="mh-yeast">Yeast activity in grain-based high-gravity fermentation</h2>
+
+<p>The yeast <em>Saccharomyces cerevisiae</em> is the least expensive raw material for the production of bio-ethanol and is widely used in industrial ethanol fermentation because of its ability to convert fermentable sugars into ethanol under many stressful conditions.</p>
+
+<p>The overall reaction for glucose fermentation is:</p>
+
+<div class="mh-eq">C₆H₁₂O₆ → 2 C₂H₅OH + 2 CO₂ + Energy</div>
+
+<p>In grain fermentation, starch must be hydrolysed into smaller fermentable sugars so that yeast can act on them directly and produce ethanol. Depending on the plant configuration, saccharification may take place before fermentation or concurrently with it through simultaneous saccharification and fermentation (SSF).</p>
+
+<p>Under high-gravity conditions, yeast must tolerate several interacting stresses. Select one to learn more:</p>
+
+<div class="mh-tabs" role="tablist" aria-label="Yeast stress factors">
+
+<button role="tab" aria-selected="true" data-i="0">Nutrient load</button>
+
+<button role="tab" aria-selected="false" data-i="1">Ethanol inhibition</button>
+
+<button role="tab" aria-selected="false" data-i="2">Osmotic load</button>
+
+<button role="tab" aria-selected="false" data-i="3">Temperature stress</button>
+
+<button role="tab" aria-selected="false" data-i="4">Buffer capacity</button>
+
+</div>
+
+<div id="mh-stress">
+
+<div class="mh-panel" role="tabpanel"><h4>Nutrient load</h4><p>Nitrogen, magnesium, zinc, vitamins and other minerals may become insufficient relative to the higher solids and sugar loading.</p></div>
+
+<div class="mh-panel" role="tabpanel"><h4>Ethanol inhibition</h4><p>High ethanol concentrations damage cell membranes, impairing nutrient transport and reducing cell viability.</p></div>
+
+<div class="mh-panel" role="tabpanel"><h4>High osmotic load</h4><p>High sugar concentrations in the first few hours increase osmotic pressure and can slow the yeast’s ability to consume sugar.</p></div>
+
+<div class="mh-panel" role="tabpanel"><h4>Temperature stress</h4><p>Faster fermentation generates more heat; temperature excursions reduce cell viability and lead to alcohol losses and high residual sugar.</p></div>
+
+<div class="mh-panel" role="tabpanel"><h4>Buffer capacity</h4><p>Proper pH balance is required from liquefaction through to the fermenter, maintained by the ionic balance of the mash.</p></div>
+
+</div>
+
+<h2 id="mh-research">What the research shows</h2>
+
+<h3>Research data from corn-mash fermentation</h3>
+
+<p>A study by Devantier, Pedersen and Olsson investigated very-high-gravity fermentation using milled corn at 35% w/w total dry matter under simultaneous saccharification and fermentation conditions.</p>
+
+<p>The researchers investigated the effects of glucoamylase dosage, pre-saccharification and yeast strain. Increasing glucoamylase dosage and/or introducing pre-saccharification accelerated the process and increased the final ethanol concentration from 106 to 126 g/kg.</p>
+
+<div class="mh-table"><table>
+
+<thead><tr><th>Parameter</th><th>Published experimental result</th></tr></thead>
+
+<tbody>
+
+<tr><td>Feedstock</td><td>Corn</td></tr>
+
+<tr><td>Initial total dry matter</td><td>35% w/w</td></tr>
+
+<tr><td>Process</td><td>Simultaneous saccharification and fermentation</td></tr>
+
+<tr><td>Variables investigated</td><td>Glucoamylase dosage, pre-saccharification and yeast strain</td></tr>
+
+<tr><td>Reported ethanol concentration</td><td>106–126 g/kg</td></tr>
+
+<tr><td>Principal finding</td><td>Improved starch hydrolysis accelerated fermentation and increased final ethanol concentration</td></tr>
+
+</tbody></table></div>
+
+<p>The study demonstrates that increasing grain loading alone is not sufficient. Effective starch hydrolysis is equally important because yeast performance depends on the availability of fermentable sugars.</p>
+
+<p class="mh-src">Source: Devantier, R., Pedersen, S. and Olsson, L. (2005). <a href="[https://doi.org/10.1007/s00253-005-1902-9](https://doi.org/10.1007/s00253-005-1902-9)" target="_blank" rel="noopener">Characterization of very high gravity ethanol fermentation of corn mash</a>.</p>
+
+<p class="mh-note"><strong>Measurement note:</strong> the published concentration is expressed in g/kg. It should not be directly interpreted as g/L or converted to % v/v without considering mash density and the basis of measurement.</p>
+
+<h3>Effect of ethanol-tolerant yeast on corn fermentation</h3>
+
+<p>Another study compared the performance of an ethanol-tolerant <em>Saccharomyces cerevisiae</em> strain with an industrial strain under high-gravity corn-mash fermentation conditions. The results after 72 hours were:</p>
+
+<div class="mh-bars" id="mh-bars">
+
+<div class="mh-legend"><span style="--c:var(--mh-grey)">Industrial strain</span><span style="--c:var(--mh-primary)">Ethanol-tolerant strain</span></div>
+
+<div class="mh-bar-row"><div>Ethanol concentration (higher is better)</div>
+
+<div class="mh-bar"><i data-w="86.7" style="width:0;background:var(--mh-grey)"></i><em>130 g/L</em></div>
+
+<div class="mh-bar"><i data-w="94.7" style="width:0;background:var(--mh-primary)"></i><em>142 g/L</em></div></div>
+
+<div class="mh-bar-row"><div>Residual sugar (lower is better)</div>
+
+<div class="mh-bar"><i data-w="90" style="width:0;background:var(--mh-grey)"></i><em>36 g/L</em></div>
+
+<div class="mh-bar"><i data-w="17.5" style="width:0;background:var(--mh-primary)"></i><em>7 g/L</em></div></div>
+
+<div class="mh-bar-row"><div>Glycerol (lower is better)</div>
+
+<div class="mh-bar"><i data-w="35" style="width:0;background:var(--mh-grey)"></i><em>14 g/L</em></div>
+
+<div class="mh-bar"><i data-w="30" style="width:0;background:var(--mh-primary)"></i><em>12 g/L</em></div></div>
+
+<div class="mh-bar-row"><div>Yeast viability (higher is better)</div>
+
+<div class="mh-bar"><i data-w="7.5" style="width:0;background:var(--mh-grey)"></i><em>≈3%</em></div>
+
+<div class="mh-bar"><i data-w="100" style="width:0;background:var(--mh-primary)"></i><em>≈40%</em></div></div>
+
+</div>
+
+<div class="mh-table"><table>
+
+<thead><tr><th>Performance indicator</th><th>Industrial strain</th><th>Ethanol-tolerant strain</th></tr></thead>
+
+<tbody>
+
+<tr><td>Ethanol concentration</td><td>130 g/L</td><td>142 g/L</td></tr>
+
+<tr><td>Residual sugar</td><td>36 g/L</td><td>7 g/L</td></tr>
+
+<tr><td>Glycerol concentration</td><td>14 g/L</td><td>12 g/L</td></tr>
+
+<tr><td>Yeast viability</td><td>Approximately 3%</td><td>Approximately 40%</td></tr>
+
+</tbody></table></div>
+
+<p>The ethanol-tolerant strain produced approximately 9% more ethanol per litre of fermentation medium than the comparison strain, based on the reported concentrations.</p>
+
+<p>The reduction in residual sugar from 36 g/L to 7 g/L is particularly significant. It indicates that the improved performance was associated not only with greater ethanol tolerance but also with more complete substrate utilisation.</p>
+
+<p>The viability data further illustrate the importance of maintaining active yeast populations during the final stages of fermentation, when ethanol concentrations are highest.</p>
+
+<p class="mh-src">Source: <a href="[https://pubmed.ncbi.nlm.nih.gov/21632242/](https://pubmed.ncbi.nlm.nih.gov/21632242/)" target="_blank" rel="noopener">Techno-economic implications of improved high-gravity corn mash fermentation</a>, <em>Bioresource Technology</em>, 2011. These values come from a specific experimental study and should not be treated as guaranteed performance figures for every commercial distillery.</p>
+
+<h3>Research data from wheat-mash fermentation</h3>
+
+<p>Much of the pioneering work on very-high-gravity grain fermentation was carried out by Thomas and Ingledew at the University of Saskatchewan, Canada, using wheat mashes.</p>
+
+<p>In their 1990 study, the researchers showed that the free amino nitrogen (FAN) naturally present in very-high-gravity wheat mash was insufficient to support rapid and complete fermentation. Supplementing the mash with an assimilable nitrogen source, such as yeast extract, a mixture of amino acids or urea, substantially shortened fermentation time and allowed more complete sugar utilisation.</p>
+
+<p>In follow-up work, the same group reported final ethanol concentrations of about 21% v/v from very-high-gravity wheat mashes under laboratory conditions. This was achieved by combining nutrient supplementation with an adequate yeast pitching rate and controlled fermentation temperature.</p>
+
+<div class="mh-table"><table>
+
+<thead><tr><th>Parameter</th><th>Published finding</th></tr></thead>
+
+<tbody>
+
+<tr><td>Feedstock</td><td>Wheat mash</td></tr>
+
+<tr><td>Fermentation type</td><td>Very-high-gravity, laboratory scale</td></tr>
+
+<tr><td>Main limiting factor identified</td><td>Free amino nitrogen (FAN)</td></tr>
+
+<tr><td>Corrective measures</td><td>Nitrogen supplementation (yeast extract, amino acids or urea), adequate pitching rate, temperature control</td></tr>
+
+<tr><td>Reported ethanol concentration</td><td>Approximately 21% v/v</td></tr>
+
+<tr><td>Principal finding</td><td>Nutrient availability, not ethanol tolerance alone, often limits very-high-gravity fermentation</td></tr>
+
+</tbody></table></div>
+
+<p class="mh-note"><strong>Key lesson:</strong> yeast stops performing well long before it reaches its true ethanol-tolerance limit if it is short of nitrogen. Many “stuck” high-gravity fermentations are, in practice, nutrient-limited fermentations.</p>
+
+<p class="mh-src">Sources: Thomas, K.C. and Ingledew, W.M. (1990), <em>Applied and Environmental Microbiology</em>, 56(7), 2046–2050; Thomas, K.C. and Ingledew, W.M. (1992), <em>Journal of Industrial Microbiology</em>, 10, 61–68. These are laboratory results obtained under carefully controlled conditions.</p>
+
+<h2 id="mh-benefits">How does high-gravity fermentation improve plant performance?</h2>
+
+<p>The primary advantage of high-gravity fermentation is that more ethanol can potentially be produced from a given volume of fermentation medium.</p>
+
+<div class="mh-grid">
+
+<div><h3>Increased ethanol concentration</h3><p>Higher initial sugar loading creates the potential for a higher final ethanol concentration, increasing production per batch and per unit of fermenter volume. Because higher loading may also lengthen fermentation, ethanol concentration and volumetric productivity must be evaluated together.</p></div>
+
+<div><h3>Reduced water requirement</h3><p>Higher grain-to-water ratios can reduce process-water consumption per tonne of grain or per litre of ethanol. The extent of savings depends on feedstock, solids loading, liquefaction, cooling and cleaning, so a complete water balance is needed.</p></div>
+
+<div><h3>Savings in distillation energy</h3><p>A stronger wash means less water to process per litre of ethanol, which can reduce the heating and separation duty of distillation. Actual savings depend on column configuration, feed conditions, heat recovery and reflux requirements.</p></div>
+
+<div><h3>Best utilisation of existing equipment</h3><p>More ethanol per fermentation improves fermenter utilisation, depending on cycle time, cleaning and turnaround, cooling and downstream capacity. The benefit is higher sustainable throughput, not simply a higher alcohol percentage.</p></div>
+
+</div>
+
+<h2 id="mh-tech">Major technical considerations for industrial implementation</h2>
+
+<p>Successful high-gravity fermentation requires a coordinated approach to slurry preparation, enzyme performance, yeast management and equipment utilisation.</p>
+
+<div class="mh-acc-ctl"><button type="button" id="mh-acc-all">Expand all</button></div>
+
+<details class="mh-acc"><summary><h3>Optimised grain loading and mash viscosity</h3></summary><div>
+
+<p>Increasing grain concentration can increase mash viscosity, making pumping, mixing and heat transfer more difficult. The effect is especially important during the early stages of liquefaction, when starch gelatinisation and incomplete hydrolysis may create highly viscous mixtures.</p>
+
+<p>The plant should evaluate:</p>
+
+<ol type="a" style="list-style-type:lower-alpha"><li>Grain particle-size distribution</li><li>Grain-to-water ratio</li><li>Liquefaction performance</li><li>Alpha-amylase and glucoamylase performance</li><li>Mixing and pumping requirements</li><li>Heat-transfer limitations</li></ol>
+
+<p>The optimum solids concentration is the highest practical concentration that allows reliable operation without unacceptable losses in conversion efficiency or process stability.</p>
+
+</div></details>
+
+<details class="mh-acc"><summary><h3>Enzyme dosing and saccharification efficiency</h3></summary><div>
+
+<p>Enzyme performance becomes increasingly important as grain loading rises. Insufficient alpha-amylase activity can lead to poor liquefaction and excessive viscosity. Insufficient glucoamylase activity can limit the release of fermentable glucose, leaving residual dextrin and reducing the final ethanol yield.</p>
+
+<p>The corn-mash study discussed earlier showed that higher glucoamylase dosage and pre-saccharification improved the rate of fermentation and increased final ethanol concentration. Enzyme dosage should be evaluated against both fermentation performance and total processing cost.</p>
+
+</div></details>
+
+<details class="mh-acc"><summary><h3>Yeast dosing rate and viability</h3></summary><div>
+
+<p>A suitable yeast pitching rate helps establish a sufficiently large active population to utilise the available sugars. However, simply increasing yeast dosage does not always improve economics: higher pitching rates may increase yeast preparation costs and can affect viability, nutrient demand and process performance.</p>
+
+<p>The wheat-mash work by Thomas and Ingledew demonstrated the importance of pitching rate in achieving high ethanol concentrations under very-high-gravity conditions. Yeast selection and pitching rate should be evaluated against fermentation completion, residual sugar, ethanol yield, cycle time and yeast viability.</p>
+
+</div></details>
+
+<details class="mh-acc"><summary><h3>Nutrient management</h3></summary><div>
+
+<p>High substrate loading increases the demand for nutrients relative to the available fermentable sugar. Nitrogen, vitamins, minerals and other growth factors may become limiting, depending on the grain, yeast strain, process configuration and the nutrient contribution of recycled process streams. Nutrient addition should therefore be based on feedstock analysis and fermentation trials rather than a universal dosage.</p>
+
+<p>In grain mashes, free amino nitrogen is usually the first nutrient to become limiting. Distilleries commonly supplement with urea or aqueous ammonia, and many also use protease enzymes, which hydrolyse grain protein to release amino acids and peptides that yeast can assimilate, and can also help lower mash viscosity.</p>
+
+<p>Where the alcohol is intended for potable use, such as extra neutral alcohol (ENA), urea dosing should be controlled carefully. Residual urea can react with ethanol to form ethyl carbamate, a regulated contaminant in alcoholic beverages, so ammonia-based or protease-derived nitrogen may be preferred for potable-grade production.</p>
+
+<p>Minerals matter too. Magnesium helps stabilise yeast cell membranes under ethanol stress, and zinc is a cofactor for alcohol dehydrogenase, the enzyme that carries out the final step of ethanol formation.</p>
+
+</div></details>
+
+<details class="mh-acc"><summary><h3>Temperature control and retention time</h3></summary><div>
+
+<p>Fermentation generates heat. As the concentration of fermentable substrate increases, cooling-system capacity and temperature control become increasingly important. A temperature excursion can affect yeast viability and fermentation rate, potentially leaving more residual sugar and increasing batch duration.</p>
+
+<p>The plant should assess the fermentation heat load, cooling-water conditions, heat-exchanger capacity, temperature distribution and control-system response at the target operating concentration.</p>
+
+</div></details>
+
+<details class="mh-acc"><summary><h3>Bacterial contamination control</h3></summary><div>
+
+<p>High-gravity fermentations generally take longer and place yeast under greater stress. Both conditions give contaminating bacteria, mainly lactic acid bacteria such as <em>Lactobacillus</em> species, a better opportunity to compete for sugar.</p>
+
+<p>These bacteria convert sugar into lactic and acetic acids instead of ethanol, and the acids are themselves inhibitory to yeast, triggering slower fermentation, higher residual sugar and lower ethanol yield. Research by Narendranath and co-workers showed that lactobacilli can significantly reduce ethanol yield, with losses increasing at higher bacterial counts.</p>
+
+<p>Practical control measures include effective clean-in-place (CIP) of fermenters, heat exchangers and transfer lines, hygienic yeast propagation, controlled pH and, where permitted, approved antimicrobial agents. Routine HPLC analysis of lactic acid, acetic acid and glycerol gives an early warning of contamination or yeast stress.</p>
+
+</div></details>
+
+<details class="mh-acc"><summary><h3>Backset and stillage recycling</h3></summary><div>
+
+<p>Many grain distilleries recycle part of the thin stillage (backset) into the slurry to reduce fresh-water consumption and recover nutrients. Backset, however, also carries dissolved salts, organic acids, glycerol and dead yeast material.</p>
+
+<p>Under high-gravity conditions, these components add to the osmotic and chemical stress already placed on the yeast. The backset ratio should therefore be optimised together with the solids loading rather than fixed independently.</p>
+
+</div></details>
+
+<details class="mh-acc"><summary><h3>Impact on stillage handling and evaporation</h3></summary><div>
+
+<p>With more ethanol in every litre of wash, less whole stillage is generated per litre of ethanol, which can reduce the hydraulic and steam load on decanters, multiple-effect evaporators and DDGS dryers.</p>
+
+<p>At the same time, the stillage becomes richer in solids and may be more viscous, which can affect decanter separation, evaporator fouling and dryer operation. For plants designed for zero liquid discharge (ZLD), these effects should be evaluated as part of the complete water and energy balance.</p>
+
+</div></details>
+
+<h3>Illustrative calculation: potential ethanol concentration from glucose</h3>
+
+<p>For glucose fermentation, 1 kg glucose theoretically produces approximately 0.511 kg ethanol. For a medium containing 250 g/L of fermentable glucose equivalent:</p>
+
+<div class="mh-table"><table>
+
+<thead><tr><th>Step</th><th>Calculation</th><th>Result</th></tr></thead>
+
+<tbody>
+
+<tr><td>Theoretical ethanol</td><td>250 × 0.511</td><td>127.75 g/L ≈ 16.2% v/v</td></tr>
+
+<tr><td>At 90% of theoretical yield</td><td>127.75 × 0.90</td><td>114.98 g/L ≈ 14.6% v/v</td></tr>
+
+</tbody></table></div>
+
+<p>Conversion to % v/v uses an ethanol density of 0.789 kg/L at 20 °C. This is an illustrative calculation, not a measured industrial result; for a grain plant it must account for starch content, conversion efficiency, fermentable sugar availability, fermentation efficiency and mash volume, with distillation recovery considered separately. <a href="#mh-calc">Try other values in the calculator.</a></p>
+
+<h2 id="mh-steps">A practical, step-wise approach to implementation</h2>
+
+<p>Moving an operating distillery to high-gravity fermentation is best done gradually, with each step validated against the plant’s own baseline data. Tap each step to mark it as reviewed.</p>
+
+<ol class="mh-steps" id="mh-steplist">
+
+<li class="mh-step"><button type="button" aria-pressed="false">Establish the baseline</button><p>Record current solids loading, ethanol concentration, yield, fermentation time, residual sugar, steam and water consumption over several weeks of normal operation.</p></li>
+
+<li class="mh-step"><button type="button" aria-pressed="false">Run laboratory trials</button><p>Test the target solids level with the plant’s own grain, enzymes, yeast and process water to identify enzyme, nutrient and pitching-rate requirements.</p></li>
+
+<li class="mh-step"><button type="button" aria-pressed="false">Check equipment limits</button><p>Verify slurry and mash pumping, agitation, liquefaction residence time, fermenter cooling capacity and distillation feed limits at the higher concentration.</p></li>
+
+<li class="mh-step"><button type="button" aria-pressed="false">Increase solids gradually</button><p>Raise solids loading in small increments, typically one to two percentage points at a time, and allow the process to stabilise at each step.</p></li>
+
+<li class="mh-step"><button type="button" aria-pressed="false">Monitor and correct</button><p>Track residual sugar, glycerol, lactic acid, yeast viability and the temperature profile closely, and adjust enzyme, nutrient or cooling conditions as needed.</p></li>
+
+<li class="mh-step"><button type="button" aria-pressed="false">Lock in the optimum</button><p>Select the operating point that delivers the best overall economics and reliability, not simply the highest ethanol concentration.</p></li>
+
+</ol>
+
+<p class="mh-step-prog" id="mh-prog">0 of 6 steps reviewed</p>
+
+<h2 id="mh-econ">How should high-gravity fermentation be evaluated economically?</h2>
+
+<p>A high-gravity process should be compared with the plant’s conventional operating baseline using consistent production and consumption indicators. The most useful parameters include:</p>
+
+<div class="mh-table"><table>
+
+<thead><tr><th>Indicator</th><th>Purpose</th></tr></thead>
+
+<tbody>
+
+<tr><td>Ethanol yield, L/t dry grain</td><td>Measures conversion performance</td></tr>
+
+<tr><td>Final ethanol concentration, % v/v</td><td>Indicates the concentration achieved in fermented mash</td></tr>
+
+<tr><td>Fermentation time, hours</td><td>Determines batch-cycle duration</td></tr>
+
+<tr><td>Volumetric productivity, g/L/h</td><td>Measures ethanol production rate per unit of mash volume</td></tr>
+
+<tr><td>Residual sugar, g/L</td><td>Indicates the extent of substrate utilisation</td></tr>
+
+<tr><td>Steam consumption, kg/L absolute alcohol</td><td>Evaluates distillation energy demand</td></tr>
+
+<tr><td>Electricity consumption, kWh/L absolute alcohol</td><td>Evaluates electrical energy demand</td></tr>
+
+<tr><td>Water consumption, L/L ethanol</td><td>Measures water-use intensity</td></tr>
+
+<tr><td>Yeast viability, %</td><td>Indicates the condition of the yeast population</td></tr>
+
+</tbody></table></div>
+
+<p>A reliable assessment should also consider enzyme and nutrient costs, additional cooling and mixing requirements, fermentation-cycle changes, ethanol recovery and the impact on coproduct quality.</p>
+
+<p>The optimum operating point is not necessarily the condition that produces the highest ethanol concentration. It is the condition that maximises sustainable production and economic return while maintaining reliable operation.</p>
+
+<h2 id="mh-future">Future opportunities in grain-based high-gravity fermentation</h2>
+
+<p>Further improvements are likely to come from the integration of ethanol-tolerant yeast strains, improved enzyme systems, effective nutrient management and better fermentation monitoring.</p>
+
+<p>Developments in strain selection and adaptive laboratory evolution may improve yeast tolerance to osmotic stress and ethanol inhibition. At the same time, improvements in liquefaction and saccharification can increase sugar availability while maintaining manageable mash viscosity.</p>
+
+<p>Online monitoring of temperature, fermentation progress, residual sugars and carbon dioxide evolution can help operators identify sluggish fermentation and take corrective action earlier.</p>
+
+<p>For industrial plants, the greatest opportunity lies in integrating these improvements across grain preparation, fermentation, distillation and utilities rather than treating high-gravity fermentation as an isolated change in substrate concentration.</p>
+
+<h2 id="mh-conclusion">Conclusion</h2>
+
+<p>High-gravity fermentation offers a promising route to improving the efficiency of grain-based ethanol production through higher substrate loading and increased ethanol concentration in the fermented mash.</p>
+
+<p>Published research demonstrates the importance of combining appropriate yeast strains with effective starch hydrolysis, adequate nutrient availability and suitable process conditions. Corn-mash studies have shown substantial improvements in ethanol concentration and residual sugar utilisation, while wheat-mash research has demonstrated that very high ethanol concentrations can be achieved under carefully controlled experimental conditions.</p>
+
+<p>Nevertheless, higher grain loading also increases the technical demands on liquefaction, mixing, cooling, yeast performance and downstream processing.</p>
+
+<p>The key to successful industrial implementation is to establish a balanced operating window that maximises ethanol yield and volumetric productivity while controlling water consumption, energy demand and production cost.</p>
+
+<p class="mh-tag">If you treat your yeast well, it gives you ALCOHOL…</p>
+
+<section class="mh-faq">
+
+<h2 id="mh-faq">Frequently asked questions</h2>
+
+<h3>What is high-gravity fermentation?</h3>
+
+<p>High-gravity fermentation is an ethanol production method in which yeast ferments a more concentrated mash, typically 170–250 g/L of fermentable sugar, to produce a stronger wash. Grain distilleries use it to make more ethanol per batch while reducing water use and distillation steam per litre of ethanol.</p>
+
+<h3>What is the difference between high-gravity and very-high-gravity fermentation?</h3>
+
+<p>High-gravity fermentation uses about 170–250 g/L of fermentable sugar, while very-high-gravity (VHG) fermentation uses more than 250 g/L. VHG usually aims for more than 15–16% v/v ethanol and places much greater stress on the yeast, so nutrient supply, enzyme dosing and cooling become critical.</p>
+
+<h3>What ethanol concentration can high-gravity fermentation achieve?</h3>
+
+<p>Commercial dry-grind corn ethanol plants commonly produce fermented beer at about 14–17% v/v ethanol from mashes of roughly 30–35% w/w solids. Laboratory research on very-high-gravity wheat mashes has reached about 21% v/v under carefully controlled conditions.</p>
+
+<h3>Does high-gravity fermentation save energy and water?</h3>
+
+<p>Yes, usually. A stronger wash means less water is processed per litre of ethanol, which can reduce distillation steam demand and process-water use. The actual savings depend on column design, heat recovery, backset recycling and the plant’s complete water and energy balance.</p>
+
+<h3>Why do high-gravity fermentations get stuck?</h3>
+
+<p>High-gravity fermentations usually stall because the yeast is stressed by high osmotic pressure, rising ethanol, a shortage of nitrogen and minerals, temperature excursions or bacterial contamination. Nitrogen shortage is often the hidden cause: research on wheat mash showed that supplementing free amino nitrogen substantially shortened fermentation time.</p>
+
+<h3>Which nitrogen source is best for high-gravity grain fermentation?</h3>
+
+<p>Distilleries commonly use urea, aqueous ammonia or protease enzymes that release amino acids from grain protein. For potable alcohol such as ENA, urea should be dosed carefully because residual urea can form ethyl carbamate, a regulated contaminant, so ammonia or protease-derived nitrogen may be preferred.</p>
+
+<h3>How much ethanol can 250 g/L of glucose produce?</h3>
+
+<p>In theory, 250 g/L of glucose produces 127.75 g/L of ethanol, about 16.2% v/v, because each gram of glucose yields 0.511 g of ethanol. At a realistic 90% fermentation efficiency, the result is about 115 g/L, or roughly 14.6% v/v.</p>
+
+<h3>Can an existing distillery convert to high-gravity fermentation?</h3>
+
+<p>Yes, many can, but it should be done step by step. The plant should first record baseline performance, run laboratory trials with its own grain and yeast, check pumping, cooling and distillation limits, and then raise solids loading gradually, typically one to two percentage points at a time, while monitoring residual sugar and yeast viability.</p>
+
+</section>
+
+<div class="mh-cta">
+
+<h2>Planning a high-gravity upgrade?</h2>
+
+<p>Mega Engineering supports distillery and ethanol projects from process evaluation through engineering and execution. If you are considering high-gravity fermentation for an existing or new grain-based ethanol plant, talk to our team.</p>
+
+<a class="mh-btn" href="[https://www.mega.tc">Contact](https://www.mega.tc">Contact) Mega Engineering</a>
+
+</div>
+
+<div class="mh-about"><img src="data:image/png;base64,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" alt="Mega Engineering" width="170" height="73"><p><strong style="color:var(--mh-ink)">Mega EPC Projects Pvt Ltd</strong> designs and builds process plants for the distillery and biofuel industries, along with CO₂ recovery, evaporation and drying, biogas and CBG, and process equipment. <a href="[https://www.mega.tc">www.mega.tc</a></p></div>](https://www.mega.tc">www.mega.tc</a></p></div>)
+
+<details class="mh-refs"><summary>References and further reading</summary>
+
+<ol>
+
+<li>Devantier, R., Pedersen, S. and Olsson, L. (2005). Characterization of very high gravity ethanol fermentation of corn mash: effect of glucoamylase dosage, pre-saccharification and yeast strain. <em>Applied Microbiology and Biotechnology</em>, 68(5), 622–629.</li>
+
+<li>Techno-economic implications of improved high-gravity corn mash fermentation (2011). <em>Bioresource Technology</em> (PubMed ID 21632242).</li>
+
+<li>Thomas, K.C. and Ingledew, W.M. (1990). Fuel alcohol production: effects of free amino nitrogen on fermentation of very-high-gravity wheat mashes. <em>Applied and Environmental Microbiology</em>, 56(7), 2046–2050.</li>
+
+<li>Thomas, K.C. and Ingledew, W.M. (1992). Production of 21% (v/v) ethanol by fermentation of very high gravity (VHG) wheat mashes. <em>Journal of Industrial Microbiology</em>, 10, 61–68.</li>
+
+<li>Narendranath, N.V., Hynes, S.H., Thomas, K.C. and Ingledew, W.M. (1997). Effects of lactobacilli on yeast-catalyzed ethanol fermentations. <em>Applied and Environmental Microbiology</em>, 63(11), 4158–4163.</li>
+
+<li>Bai, F.W., Anderson, W.A. and Moo-Young, M. (2008). Ethanol fermentation technologies from sugar and starch feedstocks. <em>Biotechnology Advances</em>, 26(1), 89–105.</li>
+
+<li>Puligundla, P., Smogrovicova, D., Obulam, V.S.R. and Ko, S. (2011). Very high gravity (VHG) ethanolic brewing and fermentation: a research update. <em>Journal of Industrial Microbiology and Biotechnology</em>, 38(9), 1133–1144.</li>
+
+</ol>
+
+</details>
+
+<script>
+
+(function(){
+
+var root=document.getElementById('mega-hgf');if(!root)return;
+
+function $(id){return document.getElementById(id);}
+
+/* calculator */
+
+var s=$('mh-sugar'),e=$('mh-eff');
+
+function calc(){
+
+var S=+s.value,E=+e.value/100,th=S*0.511,act=th*E;
+
+$('mh-sugar-o').textContent=S+' g/L';$('mh-eff-o').textContent=Math.round(E*100)+'%';
+
+$('mh-gl').textContent=act.toFixed(1)+' g/L';$('mh-vv').textContent=(act/7.89).toFixed(1)+'% v/v';
+
+$('mh-th').textContent=th.toFixed(1)+' g/L ('+(th/7.89).toFixed(1)+'% v/v)';
+
+var c=$('mh-cls'),t,col;
+
+if(S<150){t='Below normal';col='#939496';}else if(S<=170){t='Normal gravity';col='var(--mh-ng)';}else if(S<=250){t='High gravity';col='var(--mh-hg)';}else{t='Very high gravity';col='var(--mh-vhg)';}
+
+c.textContent=t;[c.style](http://c.style).background=col;
+
+$('mh-marker').style.left=((S-120)/200*100)+'%';
+
+}
+
+s.addEventListener('input',calc);e.addEventListener('input',calc);calc();
+
+/* stress tabs: all text is in the HTML; script only hides the unselected panels */
+
+root.classList.add('mh-js');
+
+var tabs=root.querySelectorAll('.mh-tabs button'),panels=root.querySelectorAll('#mh-stress .mh-panel');
+
+function sel(i){tabs.forEach(function(b,j){b.setAttribute('aria-selected',j===i?'true':'false');b.tabIndex=j===i?0:-1;});
+
+panels.forEach(function(p,j){p.hidden=j!==i;});}
+
+tabs.forEach(function(b,i){b.addEventListener('click',function(){sel(i);});
+
+b.addEventListener('keydown',function(ev){var n=null;if(ev.key==='ArrowRight')n=(i+1)%tabs.length;if(ev.key==='ArrowLeft')n=(i-1+tabs.length)%tabs.length;if(n!==null){sel(n);tabs[n].focus();ev.preventDefault();}});});
+
+sel(0);
+
+/* bars animate into view */
+
+var bars=root.querySelectorAll('#mh-bars i');
+
+function grow(){bars.forEach(function(b){[b.style](http://b.style).width=(b.getAttribute('data-w')*0.75)+'%';});}
+
+if('IntersectionObserver' in window){var io=new IntersectionObserver(function(en){if(en[0].isIntersecting){grow();io.disconnect();}},{threshold:.3});io.observe($('mh-bars'));}else grow();
+
+/* accordions */
+
+var accs=root.querySelectorAll('[details.mh](http://details.mh)-acc'),btn=$('mh-acc-all');
+
+btn.addEventListener('click',function(){var open=btn.textContent==='Expand all';accs.forEach(function(d){[d.open](http://d.open)=open;});btn.textContent=open?'Collapse all':'Expand all';});
+
+/* stepper */
+
+var steps=root.querySelectorAll('.mh-step'),prog=$('mh-prog');
+
+function upd(){var n=root.querySelectorAll('.[mh-step.mh](http://mh-step.mh)-done').length;prog.textContent=n===steps.length?'All 6 steps reviewed. Ready to talk to an engineering partner?':n+' of '+steps.length+' steps reviewed';}
+
+steps.forEach(function(li){var b=li.querySelector('button');b.addEventListener('click',function(){var d=li.classList.toggle('mh-done');b.setAttribute('aria-pressed',d?'true':'false');upd();});});
+
+})();
+
+</script>
+
+<!-- SEO structured data (Article schema). Update before publishing: page URL (appears 3 times), image, logo, dates -->
+
+<script type="application/ld+json">
+
+{
+
+ "@context": "[https://schema.org](https://schema.org)",
+
+ "@graph": [
+
+  {
+
+   "@type": "Organization",
+
+   "@id": "[https://www.mega.tc/#organization](https://www.mega.tc/#organization)",
+
+   "name": "Mega Engineering",
+
+   "legalName": "Mega EPC Projects Pvt Ltd",
+
+   "url": "[https://www.mega.tc/](https://www.mega.tc/)",
+
+   "logo": {
+
+    "@type": "ImageObject",
+
+    "url": "[https://www.mega.tc/wp-content/uploads/mega-logo-transparent.png](https://www.mega.tc/wp-content/uploads/mega-logo-transparent.png)"
+
+   }
+
+  },
+
+  {
+
+   "@type": "Person",
+
+   "@id": "[https://www.mega.tc/#arnab-nandi](https://www.mega.tc/#arnab-nandi)",
+
+   "name": "Arnab Nandi",
+
+   "honorificPrefix": "Mr",
+
+   "jobTitle": "Alcohol Technologist"
+
+  },
+
+  {
+
+   "@type": "TechArticle",
+
+   "@id": "[https://www.mega.tc/high-gravity-fermentation-grain-ethanol/#article](https://www.mega.tc/high-gravity-fermentation-grain-ethanol/#article)",
+
+   "mainEntityOfPage": "[https://www.mega.tc/high-gravity-fermentation-grain-ethanol/](https://www.mega.tc/high-gravity-fermentation-grain-ethanol/)",
+
+   "headline": "High-Gravity Fermentation in Grain-Based Ethanol Production: The Role of Yeast, Process Optimisation and Industrial Performance",
+
+   "alternativeHeadline": "High-Gravity Fermentation in Grain Ethanol Plants",
+
+   "description": "How high-gravity fermentation raises ethanol output and cuts water and energy use in grain distilleries, with research data, a calculator and a step-by-step guide.",
+
+   "image": "[https://www.mega.tc/wp-content/uploads/high-gravity-fermentation.jpg](https://www.mega.tc/wp-content/uploads/high-gravity-fermentation.jpg)",
+
+   "datePublished": "2026-10-24",
+
+   "dateModified": "2026-10-24",
+
+   "inLanguage": "en",
+
+   "author": {
+
+    "@id": "[https://www.mega.tc/#arnab-nandi](https://www.mega.tc/#arnab-nandi)"
+
+   },
+
+   "publisher": {
+
+    "@id": "[https://www.mega.tc/#organization](https://www.mega.tc/#organization)"
+
+   },
+
+   "articleSection": "Distillery and Biofuel",
+
+   "keywords": [
+
+    "high gravity fermentation",
+
+    "very high gravity fermentation",
+
+    "grain ethanol",
+
+    "distillery",
+
+    "Saccharomyces cerevisiae",
+
+    "ethanol yield",
+
+    "DDGS",
+
+    "ZLD"
+
+   ],
+
+   "about": [
+
+    {
+
+     "@type": "Thing",
+
+     "name": "High-gravity fermentation"
+
+    },
+
+    {
+
+     "@type": "Thing",
+
+     "name": "Ethanol fermentation"
+
+    }
+
+   ],
+
+   "proficiencyLevel": "Expert",
+
+   "citation": [
+
+    "Devantier, R., Pedersen, S. and Olsson, L. (2005). Characterization of very high gravity ethanol fermentation of corn mash. Applied Microbiology and Biotechnology, 68(5), 622-629.",
+
+    "Techno-economic implications of improved high-gravity corn mash fermentation (2011). Bioresource Technology.",
+
+    "Thomas, K.C. and Ingledew, W.M. (1990). Fuel alcohol production: effects of free amino nitrogen on fermentation of very-high-gravity wheat mashes. Applied and Environmental Microbiology, 56(7), 2046-2050.",
+
+    "Thomas, K.C. and Ingledew, W.M. (1992). Production of 21% (v/v) ethanol by fermentation of very high gravity (VHG) wheat mashes. Journal of Industrial Microbiology, 10, 61-68.",
+
+    "Narendranath, N.V., Hynes, S.H., Thomas, K.C. and Ingledew, W.M. (1997). Effects of lactobacilli on yeast-catalyzed ethanol fermentations. Applied and Environmental Microbiology, 63(11), 4158-4163.",
+
+    "Bai, F.W., Anderson, W.A. and Moo-Young, M. (2008). Ethanol fermentation technologies from sugar and starch feedstocks. Biotechnology Advances, 26(1), 89-105.",
+
+    "Puligundla, P., Smogrovicova, D., Obulam, V.S.R. and Ko, S. (2011). Very high gravity (VHG) ethanolic brewing and fermentation: a research update. Journal of Industrial Microbiology and Biotechnology, 38(9), 1133-1144."
+
+   ],
+
+   "abstract": "High-gravity fermentation (HGF) is an ethanol production method in which yeast ferments a more concentrated mash, typically 170–250 g/L of fermentable sugar, to produce a stronger wash. Above 250 g/L it is called very-high-gravity (VHG) fermentation."
+
+  },
+
+  {
+
+   "@type": "FAQPage",
+
+   "@id": "[https://www.mega.tc/high-gravity-fermentation-grain-ethanol/#faq](https://www.mega.tc/high-gravity-fermentation-grain-ethanol/#faq)",
+
+   "mainEntity": [
+
+    {
+
+     "@type": "Question",
+
+     "name": "What is high-gravity fermentation?",
+
+     "acceptedAnswer": {
+
+      "@type": "Answer",
+
+      "text": "High-gravity fermentation is an ethanol production method in which yeast ferments a more concentrated mash, typically 170–250 g/L of fermentable sugar, to produce a stronger wash. Grain distilleries use it to make more ethanol per batch while reducing water use and distillation steam per litre of ethanol."
+
+     }
+
+    },
+
+    {
+
+     "@type": "Question",
+
+     "name": "What is the difference between high-gravity and very-high-gravity fermentation?",
+
+     "acceptedAnswer": {
+
+      "@type": "Answer",
+
+      "text": "High-gravity fermentation uses about 170–250 g/L of fermentable sugar, while very-high-gravity (VHG) fermentation uses more than 250 g/L. VHG usually aims for more than 15–16% v/v ethanol and places much greater stress on the yeast, so nutrient supply, enzyme dosing and cooling become critical."
+
+     }
+
+    },
+
+    {
+
+     "@type": "Question",
+
+     "name": "What ethanol concentration can high-gravity fermentation achieve?",
+
+     "acceptedAnswer": {
+
+      "@type": "Answer",
+
+      "text": "Commercial dry-grind corn ethanol plants commonly produce fermented beer at about 14–17% v/v ethanol from mashes of roughly 30–35% w/w solids. Laboratory research on very-high-gravity wheat mashes has reached about 21% v/v under carefully controlled conditions."
+
+     }
+
+    },
+
+    {
+
+     "@type": "Question",
+
+     "name": "Does high-gravity fermentation save energy and water?",
+
+     "acceptedAnswer": {
+
+      "@type": "Answer",
+
+      "text": "Yes, usually. A stronger wash means less water is processed per litre of ethanol, which can reduce distillation steam demand and process-water use. The actual savings depend on column design, heat recovery, backset recycling and the plant’s complete water and energy balance."
+
+     }
+
+    },
+
+    {
+
+     "@type": "Question",
+
+     "name": "Why do high-gravity fermentations get stuck?",
+
+     "acceptedAnswer": {
+
+      "@type": "Answer",
+
+      "text": "High-gravity fermentations usually stall because the yeast is stressed by high osmotic pressure, rising ethanol, a shortage of nitrogen and minerals, temperature excursions or bacterial contamination. Nitrogen shortage is often the hidden cause: research on wheat mash showed that supplementing free amino nitrogen substantially shortened fermentation time."
+
+     }
+
+    },
+
+    {
+
+     "@type": "Question",
+
+     "name": "Which nitrogen source is best for high-gravity grain fermentation?",
+
+     "acceptedAnswer": {
+
+      "@type": "Answer",
+
+      "text": "Distilleries commonly use urea, aqueous ammonia or protease enzymes that release amino acids from grain protein. For potable alcohol such as ENA, urea should be dosed carefully because residual urea can form ethyl carbamate, a regulated contaminant, so ammonia or protease-derived nitrogen may be preferred."
+
+     }
+
+    },
+
+    {
+
+     "@type": "Question",
+
+     "name": "How much ethanol can 250 g/L of glucose produce?",
+
+     "acceptedAnswer": {
+
+      "@type": "Answer",
+
+      "text": "In theory, 250 g/L of glucose produces 127.75 g/L of ethanol, about 16.2% v/v, because each gram of glucose yields 0.511 g of ethanol. At a realistic 90% fermentation efficiency, the result is about 115 g/L, or roughly 14.6% v/v."
+
+     }
+
+    },
+
+    {
+
+     "@type": "Question",
+
+     "name": "Can an existing distillery convert to high-gravity fermentation?",
+
+     "acceptedAnswer": {
+
+      "@type": "Answer",
+
+      "text": "Yes, many can, but it should be done step by step. The plant should first record baseline performance, run laboratory trials with its own grain and yeast, check pumping, cooling and distillation limits, and then raise solids loading gradually, typically one to two percentage points at a time, while monitoring residual sugar and yeast viability."
+
+     }
+
+    }
+
+   ]
+
+  }
+
+ ]
+
+}
+
+</script>
+
+</div>
+
