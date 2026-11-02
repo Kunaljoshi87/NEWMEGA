@@ -58,7 +58,7 @@ def card(p,i):
 def build():
  posts=read_posts(); used={p['slug'] for p in posts}
  # keep old WordPress article paths; dynamically created posts can never overwrite existing original pages
- posts=[p for p in posts if not (ROOT/p['slug']/'index.html').exists()]
+ posts=[p for p in posts if not (ROOT/p['slug']/'index.html').exists() or 'class="article-shell"' in (ROOT/p['slug']/'index.html').read_text(encoding='utf-8',errors='ignore')]
  for p in posts:
   url=CANON+p['slug']+'/'
   text=p['body'] if p['slug']=='high-gravity-fermentation' and p.get('content_format')=='trusted-html' else mistune.html(p['body'])
