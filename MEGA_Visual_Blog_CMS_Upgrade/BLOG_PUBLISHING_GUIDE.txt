@@ -1,0 +1,50 @@
+MEGA ENGINEERING | BLOG CONTENT MANAGEMENT GUIDE
+
+WHAT YOU GET
+- Preserve the existing homepage design and all 30 original WordPress page/article slug paths.
+- New interactive blog library with searchable articles and category filters.
+- Rich-text article editor, picture uploads, author/date, SEO description, published/draft.
+- GitHub Actions automatically creates standalone articles with Article structured data.
+- Authorized staff do not need command-line Git commands after initial setup.
+
+ONE-TIME OWNER SETUP
+1. Upload all ZIP contents directly into repository ROOT (index.html and .pages.yml must be in root).
+2. GitHub repository Settings > Pages > Build and deployment > Source > GitHub Actions (NOT Deploy from a branch).
+3. Push initial files to main and check GitHub Actions deploy workflow succeeds.
+4. Open https://app.pagescms.org/ and sign in with GitHub as repository owner.
+5. Authorize the Pages CMS GitHub App for the NEWMEGA repository (review permissions before granting access).
+6. Open NEWMEGA > Blog articles. The example draft will appear but will NOT publish.
+7. Invite content authors through appropriate GitHub repository access (GitHub repository write permission allows edits beyond blog content; separate editorial permissions require an organizational governance setup).
+
+FOR NON-IT BLOG AUTHORS
+1. Go to https://app.pagescms.org/ and sign in with approved GitHub account.
+2. Choose Kunaljoshi87 / NEWMEGA > Blog articles > New.
+3. Enter title, date, author, category, 120-160 character SEO description and upload featured image.
+4. Add headings, short paragraphs, alt text descriptions and diagrams in rich text.
+5. Check data accuracy; toggle Publish on website ON; Save.
+6. GitHub Actions will build. Open https://kunaljoshi87.github.io/NEWMEGA/our-blogs-2/ to view the new article once deployment succeeds.
+
+DRAFT / PUBLISH
+- Published=false (or unchecked) means no public article; the draft remains in GitHub repo (publicly visible source if repo itself is public). Do not store confidential draft text or images in a public repository.
+- Published=true generates a public article at /NEWMEGA/<filename-slug>/.
+- Changing an old blog filename will change its URL and needs an explicit redirect strategy.
+- Published legacy WordPress blog HTML and service pages are retained. They are not editable in the new Blog articles collection unless explicitly migrated later.
+
+SEO / GEO
+- The preview uses robots noindex; do NOT remove on preview.
+- Old production canonical links remain https://www.mega.tc/original-slug/.
+- Confirm title, featured-image accuracy, E-E-A-T elements, useful primary evidence, article dates, and cross-links before publishing.
+- SEO/GEO improvements do not guarantee ranking or AI mentions.
+- For FINAL production launch update BASE URL, canonical, media output, robots directives, site map and production host before DNS switch.
+- Google Search Console and real page speed tests must be performed on the deployed site.
+
+LIMITATIONS
+- GitHub Pages static site cannot host its own secure login or database. Hosted Pages CMS provides the login and editor.
+- Creating new posts requires third-party Pages CMS availability plus granted GitHub access.
+- Existing contact form in template remains a preview until connected to a real handler.
+- Non-technical staff with repository write access technically can modify other repository files; use restricted repo or approvals for stricter workflows.
+- Several old WordPress pages may still lack page-builder text and original images. Review before going live.
+
+ROLLBACK
+- Backup branch before copy: git branch backup-before-cms
+- GitHub Actions > latest deployment logs show generator failures.
