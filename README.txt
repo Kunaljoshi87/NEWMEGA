@@ -1,41 +1,41 @@
-MEGA ENGINEERING - INDEPENDENT WEBSITE & BLOG CMS
-=================================================
-This package does NOT depend on WordPress. It includes:
-  index.html     - existing Option B website design (Blog link updated)
-  server.py      - independent blog publisher and public article pages
-  legacy_post_manifest.json - old article titles, slugs and short excerpts for reference ONLY (not published)
+MEGA - FIX INTERACTIVE HIGH-GRAVITY FERMENTATION ARTICLE
 
-START LOCALLY (Python 3.10+; no pip dependencies)
-------------------------------------------------
-1. Open a terminal in this folder.
-2. Set your own STRONG credentials (don't use these example placeholders):
-   Windows PowerShell:
-      $env:MEGA_ADMIN_PASSWORD="YOUR-VERY-LONG-UNIQUE-PASSWORD"
-      $env:MEGA_SESSION_SECRET="YOUR-OWN-RANDOM-STRING-AT-LEAST-32-CHARS-LONG"
-      $env:MEGA_SITE_URL="http://localhost:8080"
-      python server.py
-   Linux/macOS:
-      export MEGA_ADMIN_PASSWORD='YOUR-VERY-LONG-UNIQUE-PASSWORD'
-      export MEGA_SESSION_SECRET='YOUR-OWN-RANDOM-STRING-AT-LEAST-32-CHARS-LONG'
-      export MEGA_SITE_URL='http://localhost:8080'
-      python3 server.py
-3. Open http://localhost:8080 to see your website.
-4. Open http://localhost:8080/admin/ to write/edit/publish posts.
-5. Published posts appear at /blog/ and /blog/<slug>/ with SEO-friendly HTML.
+This is a targeted fix, not a full replacement of the website.
+Preserves: article text, tables, accordion, live ethanol calculator, tabbed panels, charts, checklists, original source references.
+The code uses trusted HTML ONLY for this reviewed article. Other CMS Markdown posts keep the normal renderer.
 
-DEPLOYMENT NOTES (read before production)
------------------------------------------
-- Use a managed host/VPS/Python app platform with persistent storage for data/blog.sqlite3.
-- Set MEGA_SITE_URL=https://www.mega.tc and MEGA_HTTPS=1 in production.
-- Put an HTTPS reverse proxy (Caddy/Nginx) in front, and configure service restart/backups.
-- Don't expose admin without TLS. Use restrictive network access, MFA via an identity provider,
-  login rate limiting, anti-CSRF tokens and a security review before public deployment.
-- This is a lightweight working prototype, NOT hardened enterprise CMS. Its current single
-  admin password + cookie and basic same-origin check are not production-grade controls.
-- The old WordPress blog content is NOT automatically published. The manifest is a migration
-  reference; copy approved complete articles into the new editor and preserve their old slugs.
-- Original WordPress URLs must be explicitly mapped or redirected to retained articles.
-- The original homepage still uses hash-based feature previews; the rest of the SEO migration
-  (separate service pages and redirects) is NOT complete.
-- Featured images currently use public HTTPS URLs; image upload is not implemented.
-- No outbound enquiry form backend is included: the original site's form is a preview.
+WINDOWS POWERSHELL:
+
+1. Open PowerShell in C:\Users\Kunal Joshi\Desktop\New Website
+2. Backup your current files and first pull the saved CMS post:
+   git status
+   git pull origin main
+   git branch backup-before-hgf-fix
+   Copy-Item '.\scripts\build_blog.py' '.\scripts\build_blog.before-hgf.py' -Force
+   Copy-Item '.\content\posts\example-draft.md' '.\example-draft-backup.md' -Force
+
+3. Extract this ZIP into the SAME New Website root. The zip contains scripts/ and content/ at root. Copy them there, NOT under another folder.
+
+4. Disable the old published example-draft to prevent duplicate and broken content:
+   (Get-Content '.\content\posts\example-draft.md' -Raw) -replace '(?m)^published:\s*true\s*$', 'published: false' | Set-Content '.\content\posts\example-draft.md' -Encoding utf8
+
+5. Build:
+   py scripts\build_blog.py
+   Test-Path '.\high-gravity-fermentation\index.html'
+   Select-String -Path '.\high-gravity-fermentation\index.html' -Pattern 'mh-calc', 'mh-sugar', '<style>'
+   If Python dependencies missing: py -m pip install mistune PyYAML
+
+6. Stage ONLY the relevant files; check git status, then commit and push:
+   git add scripts/build_blog.py content/posts/high-gravity-fermentation.md content/posts/example-draft.md high-gravity-fermentation/index.html index.html our-blogs-2/index.html blog/index.html sitemap-preview.xml sitemap-production.xml
+   git status
+   git commit -m "Fix interactive high-gravity article display"
+   git push origin main
+
+7. Confirm GitHub Actions succeeds and open https://kunaljoshi87.github.io/NEWMEGA/high-gravity-fermentation/
+
+NOTES:
+- Images referenced inside article reuse an existing site logo. This fix does not include a relevant hero photograph; it intentionally leaves cover blank rather than displaying a broken image.
+- If HTML code still appears on live site, inspect the GitHub Actions log. Ensure Pages Settings > Source is GitHub Actions.
+- Only trusted site administrators should edit the reviewed custom HTML; arbitrary HTML/JS from untrusted authors can execute scripts on your website.
+- Do not commit the local backup files. Prefer removing them later from the repository directory.
+- The current production domain is not switched by this package. Keep production noindex migration safeguards until the final switch.
