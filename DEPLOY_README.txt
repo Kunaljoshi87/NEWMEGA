@@ -1,16 +1,20 @@
-MEGA ENGINEERING - NEW WEBSITE & SEO MIGRATION
+MEGA Engineering - New uploaded design, SEO-preserving static website
 
-Preview base: https://kunaljoshi87.github.io/NEWMEGA/
+SOURCE: User-uploaded index(1).html (new design). Existing WordPress XML and prior SEO page extraction used for copy and URL mapping.
 
-ALL 22 published WordPress pages and 8 published blogs are recreated at matching URL paths.
-The homepage retains the existing Option B layout. Remaining pages share a new blue/green layout.
-Available text was extracted from WordPress XML, removing old page-builder shortcodes. Verify every page against the live site before publishing as production.
-IMPORTANT: WordPress export does NOT include rendered pages, many plugin-generated components, or actual image files. Some pages with empty WordPress content have minimal explanatory text and require manual content entry.
-SEO: Yoast metadata values were preserved when usable; if titles used Yoast %% variables, a plain title fallback was used. Production canonical URLs refer to https://www.mega.tc/ matching original WordPress paths.
-For hosting on GitHub Pages (repository NEWMEGA), copy the CONTENTS of this ZIP to repository ROOT, not into a subfolder, commit, and push. GitHub Pages: branch main, folder / (root).
-Don't switch the primary production domain until all website functionality, forms, old content, visual media, metadata, canonical links, robots, structured data, redirects and GSC checks have been reviewed.
-SITE LIMITATIONS: GitHub Pages cannot run a Python blog CMS or admin login or accept contact form submissions by itself. /admin/ is an explicit information page only.
-URLS: page links are /NEWMEGA/<original-slug>/ for GitHub preview, which MUST be converted to /<original-slug>/ on the future mega.tc site. Use an automated build replacement, e.g. replace every /NEWMEGA/ occurrence with / before deploying production.
-Images: WordPress XML references old media but does not contain media binaries; obtain /wp-content/uploads/ backups and optimize images.
-Google rankings cannot be guaranteed from site files. Preserve content and same-domain URLs, compare GSC data before/after, confirm Google indexation.
-Temporary migration files, XML and spreadsheet are not included in public site package.
+PREVIEW: https://kunaljoshi87.github.io/NEWMEGA/
+PRODUCTION: https://www.mega.tc/
+
+All 22 published pages and 8 published blog article slugs are represented by individual index.html files. The site includes the 2026 reference design, local logo and hero assets, internal page links with the /NEWMEGA/ prefix, metadata, canonical production URLs, social sharing fields, and Schema.org structured data.
+
+GITHUB PAGES: Extract ZIP, copy CONTENTS directly into the repository ROOT (not a nested folder). Verify main/root Pages deployment. Check /NEWMEGA/about-us/, /NEWMEGA/our-blogs-2/, /NEWMEGA/fuel-ethanol/.
+
+SEO MIGRATION ALERT: The GitHub PREVIEW is intentionally tagged noindex,follow to prevent duplicate pages indexing before the real mega.tc migration. On final PRODUCTION deployment, remove ALL meta robots noindex tags, change /NEWMEGA/ prefixes in HTML and CSS to /, rename sitemap-production.xml to sitemap.xml, and use a production robots.txt that allows crawling. Test canonical URLs, links, sitemap, redirects, metadata and structured data on live domain.
+
+DO NOT EXPECT identical Google rankings automatically; preserve all meaningful content and old paths, and monitor Google Search Console. Some WordPress page-builder content was absent in its XML: pages with a review notice need their real copy and images restored before replacing the existing site. Verify all company facts and special claims.
+
+BLOG CMS: GitHub Pages cannot host an admin login, database or dynamically publish new posts. Existing static blog pages work without a backend. To support non-technical blog publishing, a separate backend or headless CMS with publishing workflow is still required.
+
+FORMS: Existing preview enquiry form is not connected to a real mail backend. Do not regard it as functional in production.
+
+No WordPress links are used as blog destinations in this package. WordPress export used only as content reference.
