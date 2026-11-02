@@ -35,7 +35,7 @@ def read_posts():
   desc=str(data.get('description') or '').strip()[:280]
   title=str(data.get('title') or '').strip()
   if not title or not desc:continue
-  posts.append(dict(slug=slug,title=title,date=date,author=str(data.get('author') or 'MEGA Engineering Team'),category=str(data.get('category') or 'Engineering Insights'),description=desc,cover=imgsrc(data.get('cover')),body=mt.group(2),legacy=False))
+  posts.append(dict(slug=slug,title=title,date=date,author=str(data.get('author') or 'MEGA Engineering Team'),category=str(data.get('category') or 'Engineering Insights'),description=desc,cover=imgsrc(data.get('cover')),body=mt.group(2),content_format=str(data.get('content_format') or 'markdown'),legacy=False))
  return sorted(posts,key=lambda x:x['date'],reverse=True)
 
 def global_header():
@@ -61,7 +61,7 @@ def build():
  posts=[p for p in posts if not (ROOT/p['slug']/'index.html').exists()]
  for p in posts:
   url=CANON+p['slug']+'/'
-  text=mistune.html(p['body'])
+  text=p['body'] if p['slug']=='high-gravity-fermentation' and p.get('content_format')=='trusted-html' else mistune.html(p['body'])
   # images in rich text must remain relative to repo prefix
   text=re.sub(r'(src|href)=["\']/(?!NEWMEGA/|https?://)',lambda m:m.group(1)+'="'+BASE,text)
   img=f'<img class="article-hero" loading="eager" src="{clean(p["cover"])}" alt="{clean(p["title"])}">' if p['cover'] else ''
