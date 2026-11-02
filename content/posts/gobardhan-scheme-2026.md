@@ -1,4 +1,4 @@
-﻿---
+---
 title: 'GOBARdhan Scheme 2026: Complete CBG Project Guide'
 published: true
 date: '2026-11-11'
