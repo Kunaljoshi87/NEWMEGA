@@ -1,6 +1,6 @@
 ---
 title: Example Blog Draft - Replace Before Publishing
-published: true
+published: false
 date: 2026-11-02
 author: MEGA Engineering Team
 category: CO2 Recovery
