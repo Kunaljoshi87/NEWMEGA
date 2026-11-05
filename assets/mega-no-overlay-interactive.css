@@ -1,0 +1,51 @@
+/* MEGA interactive website upgrade: no photo files changed, no decorative blue overlays */
+body .hero-art{background-image:url('/NEWMEGA/assets/hero-1.jpg')!important;background-size:cover!important;background-position:center!important;isolation:isolate;overflow:hidden}
+body .hero-art::before,body .hero-art::after{content:none!important;display:none!important;background:none!important;opacity:0!important}
+body .hero-art>span{display:none!important}
+body .hero-art:before{box-shadow:none!important}
+body .hero-art{filter:none!important;opacity:1!important}
+body .hero-art img{filter:none!important;opacity:1!important;mix-blend-mode:normal!important}
+body .hero-art{box-shadow:0 16px 40px rgba(0,0,0,.16)!important}
+/* Global original photographs: leave their pixel values, opacity and hue unmodified. */
+#mega-interactive-sections{--mi-navy:#122a40;--mi-blue:#315f83;--mi-green:#89a849;--mi-line:#d6e0e8;color:inherit}
+#mega-interactive-sections *{box-sizing:border-box}
+#mega-interactive-sections .mi-wrap{max-width:1200px;margin:auto;padding:clamp(42px,5vw,76px) 22px}
+#mega-interactive-sections .mi-kicker{font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;color:#8ba84a;font-weight:800}
+#mega-interactive-sections h2{font-size:clamp(1.8rem,3vw,2.7rem);line-height:1.2;margin:9px 0 14px;color:inherit}
+#mega-interactive-sections .mi-intro{max-width:780px;line-height:1.75;opacity:.83;margin:0 0 24px}
+#mega-interactive-sections .mi-block{background:linear-gradient(160deg,#122131,#172d3e);color:#f5f8fa}
+#mega-interactive-sections .mi-block.alt{background:#f2f6f8;color:#183148}
+#mega-interactive-sections .mi-filters{display:flex;flex-wrap:wrap;gap:10px;margin:22px 0 24px}
+#mega-interactive-sections .mi-filter{border:1px solid #8ba5b8;border-radius:999px;background:transparent;color:inherit;padding:9px 16px;font:inherit;cursor:pointer;font-weight:650;font-size:.92rem}
+#mega-interactive-sections .mi-filter[aria-pressed=true]{background:#96b755;color:#112638;border-color:#96b755}
+#mega-interactive-sections .mi-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+#mega-interactive-sections .mi-card{min-width:0;padding:25px;border:1px solid rgba(152,185,208,.33);border-radius:17px;background:rgba(255,255,255,.055);transition:transform .18s ease,border-color .18s ease,box-shadow .18s ease;display:flex;flex-direction:column}
+#mega-interactive-sections .alt .mi-card{background:#fff;border-color:#d7e2e9;box-shadow:0 6px 20px rgba(12,37,60,.05)}
+#mega-interactive-sections .mi-card:hover{transform:translateY(-4px);border-color:#91b44f;box-shadow:0 14px 30px rgba(0,0,0,.12)}
+#mega-interactive-sections .mi-card[hidden]{display:none!important}
+#mega-interactive-sections .mi-no{color:#a4c76a;font-size:.85rem;font-weight:800;letter-spacing:.08em}
+#mega-interactive-sections .mi-card h3{color:inherit;margin:12px 0 10px;font-size:1.22rem;line-height:1.35}
+#mega-interactive-sections .mi-card p{line-height:1.7;font-size:.95rem;opacity:.84;flex:1;margin:0 0 18px}
+#mega-interactive-sections .mi-card a{font-size:.94rem;text-decoration:none;font-weight:800;color:#abd47c;align-self:flex-start}
+#mega-interactive-sections .alt .mi-card a{color:#235d85}
+#mega-interactive-sections .mi-card a:hover{text-decoration:underline}
+#mega-interactive-sections .mi-visual{border:1px solid #c8d9e4;border-radius:22px;background:linear-gradient(140deg,#fff,#e6eef3);padding:clamp(18px,3vw,32px);margin:30px 0 8px;color:#17364e}
+#mega-interactive-sections .mi-visual h3{font-size:1.3rem;margin:0 0 7px}
+#mega-interactive-sections .mi-small{font-size:.86rem;opacity:.8;margin:0 0 20px}
+#mega-interactive-sections .mi-steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:13px;perspective:1000px}
+#mega-interactive-sections .mi-step{position:relative;min-height:125px;padding:20px 15px;background:linear-gradient(145deg,#eaf2f4,#fff);border:1px solid #b6d0df;box-shadow:7px 9px 0 #cedde5,10px 13px 19px rgba(25,63,88,.12);border-radius:12px;transform:rotateX(4deg);display:flex;flex-direction:column;justify-content:center;gap:8px}
+#mega-interactive-sections .mi-step b{font-size:.94rem}
+#mega-interactive-sections .mi-step small{font-size:.8rem;color:#3e6b84}
+#mega-interactive-sections .mi-step .mi-ordinal{color:#7b993f;font-size:.83rem;font-weight:900}
+#mega-interactive-sections .mi-service-cta{display:inline-flex;align-items:center;gap:8px;background:#90b052;color:#132a3c;text-decoration:none;font-weight:800;border-radius:999px;padding:13px 22px;margin-top:24px}
+#mega-interactive-sections .mi-service-cta:hover{background:#a9c674}
+body .mi-engineering{max-width:1100px;margin:0 auto;padding:36px 20px 64px;color:inherit}
+body .mi-engineering .mi-engineering-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin:20px 0}
+body .mi-engineering article{border:1px solid #c8d6e0;border-radius:14px;padding:22px;background:rgba(130,160,188,.06)}
+body .mi-engineering h2{font-size:clamp(1.55rem,2.6vw,2.2rem);margin-bottom:14px}
+body .mi-engineering h3{font-size:1.2rem;margin:0 0 8px}
+body .mi-engineering p{line-height:1.75;margin:0}
+body .mi-engineering .mi-engineering-cta{display:inline-block;margin-top:22px;border-radius:99px;background:#86a948;padding:13px 22px;color:#132a3c;text-decoration:none;font-weight:800}
+@media(max-width:900px){#mega-interactive-sections .mi-grid{grid-template-columns:repeat(2,minmax(0,1fr))}#mega-interactive-sections .mi-steps{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:600px){#mega-interactive-sections .mi-grid,#mega-interactive-sections .mi-steps,body .mi-engineering .mi-engineering-grid{grid-template-columns:1fr}#mega-interactive-sections .mi-step{min-height:90px}}
+@media(prefers-reduced-motion:reduce){#mega-interactive-sections .mi-card{transition:none}#mega-interactive-sections .mi-card:hover{transform:none}#mega-interactive-sections .mi-step{transform:none}}
