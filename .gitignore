@@ -7,3 +7,6 @@ MEGA_*_Upgrade.zip
 __pycache__/
 *.pyc
 _mega_local_backups/
+New folder/
+desktop.ini
+Thumbs.db
