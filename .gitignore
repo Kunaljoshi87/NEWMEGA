@@ -1,0 +1,9 @@
+MEGA_Visual_Blog_CMS_Upgrade/
+MEGA_Visual_Blog_CMS_Upgrade.zip
+MEGA_*_Upgrade/
+MEGA_*_Upgrade.zip
+*.bak
+*.before-*.bak
+__pycache__/
+*.pyc
+_mega_local_backups/
