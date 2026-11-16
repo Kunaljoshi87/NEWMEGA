@@ -10,3 +10,14 @@ _mega_local_backups/
 New folder/
 desktop.ini
 Thumbs.db
+
+old web site/
+MEGA_Complete_SEO_Matched_Website_GitHub_Pages/
+MEGA_Engineering_Independent_Website_Blog_CMS/
+*.WordPress.*.xml
+*.xlsx
+SEO_URL_AUDIT.csv
+legacy_post_manifest.json
+server.py
+README.txt
+DEPLOY_README.txt
