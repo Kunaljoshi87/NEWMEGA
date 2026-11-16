@@ -33,14 +33,14 @@
     root.querySelector('#me-technology-title').textContent=item.title;
     root.querySelector('#me-technology-desc').textContent=item.desc;
     root.querySelector('#me-technology-list').replaceChildren(...item.items.map(t=>{const li=document.createElement('li');li.textContent=t;return li;}));
-    root.querySelector('#me-technology-hidden').value=item.title;
+    const hid=root.querySelector('#me-technology-hidden'); if(hid) hid.value=item.title;
     root.querySelectorAll('.me-tab').forEach(t=>t.setAttribute('aria-selected',String(t.dataset.technology===key)));
     root.querySelector('#me-technology-info').setAttribute('aria-label',item.title+' capabilities');
   }
   root.querySelectorAll('.me-tab').forEach(t=>t.addEventListener('click',()=>choose(t.dataset.technology)));
   choose('ethanol');
   const form=root.querySelector('#me-enquiry-form');
-  form.addEventListener('submit',function(e){
+  if(form) form.addEventListener('submit',function(e){
     e.preventDefault(); if (!form.reportValidity()) return;
     const get=(name)=>form.elements[name].value.trim();
     const subject='Запрос по проекту - '+get('technology');
