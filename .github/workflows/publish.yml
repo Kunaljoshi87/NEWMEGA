@@ -22,9 +22,11 @@ jobs:
         with:
           python-version: '3.12'
       - name: Install blog generator dependencies
-        run: pip install mistune PyYAML
+        run: pip install mistune PyYAML beautifulsoup4
       - name: Generate static blog and sitemap
         run: python scripts/build_blog.py
+      - name: Build language versions (ES, FR, PT, RU)
+        run: python scripts/build_i18n.py
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v4
         with:
