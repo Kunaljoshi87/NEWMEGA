@@ -1,5 +1,9 @@
 /* MEGA motion layer: language switcher, reveal, counters, hover, header, back-to-top, process graphics */
 
+/* ---------- long words (German-style compounds, Russian) never push the page wider ---------- */
+h1,h2,h3,h4,.btn,.mega-btn,summary,th,td,dt,dd{overflow-wrap:break-word;hyphens:auto}
+img,svg,video{max-width:100%}
+
 /* ---------- language switcher ---------- */
 .lang-switch{display:flex;gap:2px;border:1px solid #d5dee5;border-radius:999px;padding:2px;background:#fff;flex:0 0 auto;margin-left:10px}
 .lang-switch a{font:600 .74rem/1 "Source Sans 3",system-ui,sans-serif;letter-spacing:.04em;color:#45566a;text-decoration:none;padding:6px 8px;border-radius:999px;transition:background .2s,color .2s}
@@ -14,19 +18,38 @@
 @media (max-width:420px){.lang-switch a{padding:6px 6px;font-size:.7rem}}
 html[lang="ru"] h1,html[lang="ru"] h2,html[lang="ru"] h3,html[lang="ru"] h4{font-family:"Roboto Condensed","Arial Narrow",Arial,sans-serif}
 
+/* ---------- phone & tablet header for the older page templates ---------- */
+.mx-menu-btn{display:none}
+@media (max-width:900px){
+  header.header .head-inner,header.mega-head .mega-wrap{display:flex!important;flex-direction:row!important;flex-wrap:wrap;align-items:center!important;justify-content:flex-start;gap:8px 10px;min-height:0;padding-top:10px!important;padding-bottom:10px!important}
+  header.header .brand img{height:36px;width:auto}
+  header.mega-head img{width:112px;margin:0!important}
+  header.header nav.nav,header.mega-head nav.mega-nav{display:none!important;order:5;flex-basis:100%;flex-direction:column;gap:0!important;padding:4px 0 8px;font-size:1rem!important}
+  header.mx-open nav.nav,header.mx-open nav.mega-nav{display:flex!important}
+  header.header nav.nav a,header.mega-head nav.mega-nav a{display:block;padding:13px 4px;border-top:1px solid #e6edf2;font-size:1rem}
+  header.header .lang-switch,header.mega-head .lang-switch{order:2;margin-left:auto;width:auto}
+  .mx-menu-btn{display:inline-flex;align-items:center;gap:6px;order:3;font:600 .95rem "Source Sans 3",system-ui,sans-serif;color:#1d2b3a;background:#fff;border:1px solid #d5dee5;border-radius:8px;padding:8px 12px;cursor:pointer;min-height:40px}
+  .mx-menu-btn::before{content:"";width:16px;height:2px;background:currentColor;box-shadow:0 -5px 0 currentColor,0 5px 0 currentColor}
+  header.mx-open .mx-menu-btn::before{box-shadow:none;transform:rotate(45deg)}
+}
+@media (max-width:480px){
+  header .lang-switch a{padding:6px 5px;font-size:.68rem}
+  header.header .brand img,header.mega-head img{height:30px;width:auto}
+  .mx-menu-btn{padding:8px 9px;font-size:.88rem}
+}
+
 /* ---------- header shadow + progress ---------- */
 header.site,header.header,header.mega-head{transition:box-shadow .3s ease}
 .mx-scrolled header.site,.mx-scrolled header.header,.mx-scrolled header.mega-head{box-shadow:0 8px 24px rgba(16,42,67,.10)}
 .mx-progress{position:fixed;left:0;top:0;height:3px;width:100%;transform-origin:0 50%;transform:scaleX(0);background:linear-gradient(90deg,#36618E,#489DD3 60%,#90A840);z-index:60;pointer-events:none}
 
 /* ---------- back to top ---------- */
-.mx-top{position:fixed;right:18px;bottom:18px;width:46px;height:46px;border-radius:50%;border:0;background:#36618E;color:#fff;font-size:20px;line-height:46px;text-align:center;box-shadow:0 10px 24px rgba(16,42,67,.25);cursor:pointer;opacity:0;transform:translateY(16px) scale(.9);transition:opacity .3s,transform .3s,background .2s;z-index:55}
+.mx-top{position:fixed;right:14px;bottom:calc(14px + env(safe-area-inset-bottom,0px));width:46px;height:46px;border-radius:50%;border:0;background:#36618E;color:#fff;font-size:20px;line-height:46px;text-align:center;box-shadow:0 10px 24px rgba(16,42,67,.25);cursor:pointer;opacity:0;transform:translateY(16px) scale(.9);transition:opacity .3s,transform .3s,background .2s;z-index:55}
 .mx-top.on{opacity:1;transform:none}
 .mx-top:hover{background:#90A840}
 
 /* ---------- scroll reveal ---------- */
 .mx-js .mx-r{opacity:0;transform:translateY(26px);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1);transition-delay:var(--mx-d,0s)}
-.mx-js .mx-r.mx-l{transform:translateX(-30px)}
 .mx-js .mx-r.mx-z{transform:scale(.94)}
 .mx-js .mx-r.mx-in{opacity:1;transform:none}
 

@@ -53,7 +53,7 @@ def decorate(html, slug, lang, published):
     html = re.sub(r'<div class="lang-bar">.*?</div>', '', html, flags=re.S)
     html = re.sub(r'<link rel="alternate" hreflang="[^"]*" href="[^"]*"/>', '', html)
     sw = switcher(slug, lang, published)
-    m = re.search(r'<header\b[^>]*>.*?</nav>', html, flags=re.S)
+    m = re.search(r'<header class="(?:site|header|mega-head)"[^>]*>.*?</nav>', html, flags=re.S)
     if m:
         html = html[:m.end()] + sw + html[m.end():]
     else:

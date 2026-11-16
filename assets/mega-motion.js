@@ -4,6 +4,17 @@
   var root = document.documentElement;
   root.classList.add('mx-js');
 
+  /* phone menu for the older page templates (their menus have no toggle) */
+  [].forEach.call(document.querySelectorAll('header.header, header.mega-head'), function (h) {
+    var nav = h.querySelector('nav.nav, nav.mega-nav'); if (!nav || h.querySelector('.mx-menu-btn')) return;
+    if (!nav.id) nav.id = 'mx-nav-' + Math.random().toString(36).slice(2, 7);
+    var b = document.createElement('button'); b.type = 'button'; b.className = 'mx-menu-btn';
+    b.setAttribute('aria-controls', nav.id); b.setAttribute('aria-expanded', 'false'); b.textContent = 'Menu';
+    nav.parentNode.insertBefore(b, nav);
+    b.addEventListener('click', function () { var o = h.classList.toggle('mx-open'); b.setAttribute('aria-expanded', String(o)); });
+    nav.addEventListener('click', function (e) { if (e.target.closest('a')) { h.classList.remove('mx-open'); b.setAttribute('aria-expanded', 'false'); } });
+  });
+
   /* header shadow, progress bar, back-to-top */
   var bar = document.createElement('div'); bar.className = 'mx-progress'; document.body.appendChild(bar);
   var top = document.createElement('button'); top.className = 'mx-top'; top.type = 'button';
@@ -34,7 +45,6 @@
     var p = el.parentElement, i = groups.get(p) || 0; groups.set(p, i + 1);
     el.classList.add('mx-r');
     if (el.matches('.shots figure,.seq figure,.vsd .gallery figure')) el.classList.add('mx-z');
-    if (el.matches('ol.steps li')) el.classList.add('mx-l');
     el.style.setProperty('--mx-d', Math.min(i, 6) * 0.08 + 's');
   });
   if (reduce || !('IntersectionObserver' in window)) {

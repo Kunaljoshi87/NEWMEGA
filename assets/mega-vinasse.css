@@ -264,3 +264,16 @@
 .vsd .contact{font-size:14px;line-height:1.8}
 .vsd .contact b{font-family:var(--f-mono);font-weight:500;user-select:all}
 .vsd .strip{background:var(--navy);color:#fff;font-family:var(--f-display);letter-spacing:.12em;font-size:17px;text-align:center;padding:9px 16px}
+
+/* phone fixes */
+.vsd .hero-grid>*{min-width:0}
+.vsd figcaption.v-note{flex-wrap:wrap}
+@media (max-width:640px){
+  .vsd table{display:block;max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .vsd td,.vsd th{overflow-wrap:anywhere}
+  .vsd .titleblock{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .vsd .titleblock div{white-space:normal;border-bottom:1px solid var(--line)}
+  .vsd .titleblock div:nth-child(2n){border-right:0}
+  .vsd .conc b{font-size:clamp(22px,7vw,32px)}
+  .vsd .v-hero h1{font-size:clamp(36px,11vw,60px)}
+}
