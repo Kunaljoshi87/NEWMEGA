@@ -106,3 +106,19 @@ ol.steps li.mx-in::before{animation:mxPop .6s cubic-bezier(.2,.9,.3,1.4)}
   .mx-flow *,#mi-steps *,.btn::after{animation:none!important}
   .mega-card:hover,.mi-card:hover,.card:hover,.btn:hover{transform:none}
 }
+
+/* ---------- contact details ---------- */
+.mx-contact{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:22px 28px;margin:6px 0 26px;text-align:left;line-height:1.6}
+.mx-contact h4{margin:0 0 6px;font:700 1.02rem "Barlow","Source Sans 3",Arial,sans-serif;color:inherit}
+.mx-contact address{font-style:normal}
+.mx-contact ul{list-style:none;margin:0;padding:0}
+.mx-contact li{padding:2px 0}
+.mx-contact p{margin:6px 0 0}
+.mx-contact a{color:inherit;text-decoration:underline;text-underline-offset:2px;overflow-wrap:anywhere}
+.article .mx-contact{margin-top:22px;padding:22px;border:1px solid #dbe5ee;border-radius:14px;background:#f7fafc}
+.mega-foot .mx-contact{color:inherit}
+.mx-hours{margin:18px 0 8px;line-height:1.7}
+.mx-hours p{margin:0}
+.mx-hours a{color:inherit;text-decoration:underline}
+@media (max-width:400px){.mx-menu-btn{font-size:0;gap:0;padding:11px 10px}}
+@media (max-width:700px){.mx-flow svg{min-width:860px}.mx-flow{-webkit-overflow-scrolling:touch}}

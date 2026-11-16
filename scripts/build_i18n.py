@@ -19,6 +19,21 @@ SKIP_DIRS = {'.git', '.github', 'content', 'scripts', 'assets', 'media', 'i18n',
 MOTION = (f'<link rel="stylesheet" href="{BASE}assets/mega-motion.css"/>', f'<script defer src="{BASE}assets/mega-motion.js"></script>')
 RU_FONT = '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@500;600;700&amp;display=swap"/>'
 
+CONTACT_BLOCK = ('<div class="mx-contact">'
+  '<div><h4>Corporate Office</h4><address>Speciality Business Center, A204<br/>Baner - Balewadi Rd, Balewadi<br/>Pune, Maharashtra 411045<br/>India</address>'
+  '<p><a href="https://maps.app.goo.gl/qDJyUwLuz1FP1hdUA" rel="noopener" target="_blank">Open in Google Maps</a></p></div>'
+  '<div><h4>Workshop</h4><address>Talegaon Dabhade, Jadhavwadi,<br/>Pune, Maharashtra 410507<br/>India</address>'
+  '<p><a href="https://maps.app.goo.gl/P9XkR1yzuTTSPBxQ9" rel="noopener" target="_blank">Open in Google Maps</a></p></div>'
+  '<div><h4>Phone &amp; Email</h4><ul>'
+  '<li><a href="tel:+917276011520">+91 72760 11520</a></li>'
+  '<li>Sales Enquiry: <a href="mailto:sales@mega.tc">sales@mega.tc</a></li>'
+  '<li>General Enquiry: <a href="mailto:support@mega.tc">support@mega.tc</a></li>'
+  '<li>Vendor Enquiry: <a href="mailto:purchase@mega.tc">purchase@mega.tc</a>, <a href="mailto:purchase.bo@mega.tc">purchase.bo@mega.tc</a></li>'
+  '</ul></div>'
+  '<div><h4>Business Hours</h4><p>Monday - Saturday: 9:00 AM - 6:00 PM</p></div>'
+  '</div>')
+
+
 def en_pages():
     out = {'': ROOT / 'index.html'}
     for p in sorted(ROOT.glob('*/index.html')):
@@ -49,9 +64,9 @@ def hreflangs(slug, published):
 
 def decorate(html, slug, lang, published):
     """Switcher, hreflang, motion layer. Idempotent."""
-    html = re.sub(r'<nav class="lang-switch".*?</nav>', '', html, flags=re.S)
-    html = re.sub(r'<div class="lang-bar">.*?</div>', '', html, flags=re.S)
-    html = re.sub(r'<link rel="alternate" hreflang="[^"]*" href="[^"]*"/>', '', html)
+    html = re.sub(r'<nav\b[^>]*class="lang-switch"[^>]*>.*?</nav>', '', html, flags=re.S)
+    html = re.sub(r'<div class="lang-bar">\s*</div>', '', html)
+    html = re.sub(r'<link\b(?=[^>]*\bhreflang=)[^>]*>', '', html)
     sw = switcher(slug, lang, published)
     m = re.search(r'<header class="(?:site|header|mega-head)"[^>]*>.*?</nav>', html, flags=re.S)
     if m:
@@ -60,12 +75,15 @@ def decorate(html, slug, lang, published):
         html = re.sub(r'(<body\b[^>]*>)', r'\1<div class="lang-bar">' + sw + '</div>', html, count=1)
     # the old disabled language buttons are replaced by the switcher
     html = re.sub(r'<div aria-label="Language" class="langs" role="group">.*?</div>', '', html, flags=re.S)
+    # company contact details in the footer of the older page templates
+    if 'class="mx-contact"' not in html:
+        html = re.sub(r'(<footer class="(?:footer|mega-foot)"[^>]*>\s*<div class="(?:wrap|mega-wrap)">)', lambda m: m.group(1) + CONTACT_BLOCK, html, count=1)
     html = html.replace('</head>', hreflangs(slug, published) + '</head>', 1)
-    if MOTION[0] not in html:
+    if 'mega-motion.css' not in html:
         html = html.replace('</head>', MOTION[0] + '</head>', 1)
-    if MOTION[1] not in html:
+    if 'mega-motion.js' not in html:
         html = html.replace('</body>', MOTION[1] + '</body>', 1)
-    if lang == 'ru' and RU_FONT not in html:
+    if lang == 'ru' and 'Roboto+Condensed' not in html:
         html = html.replace('</head>', RU_FONT + '</head>', 1)
     return html
 

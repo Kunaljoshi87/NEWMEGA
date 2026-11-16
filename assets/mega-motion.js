@@ -38,7 +38,7 @@
     '.me-gallery', '.mega-step', '.refs', '.loc', '.vsd .gallery figure', '.vsd h2', '.article p', '.article h2', '.article-shell h2',
     '.mega-section h2', 'footer .grid > div'].join(',');
   var items = [].slice.call(document.querySelectorAll(SEL)).filter(function (el) {
-    return !el.closest('header') && !el.closest('.mx-r');
+    return !el.closest('header') && !el.closest('.mx-r') && !el.closest('.mx-contact');
   });
   var groups = new Map();
   items.forEach(function (el) {
