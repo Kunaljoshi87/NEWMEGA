@@ -48,7 +48,7 @@ NAV_HTML = (
  '</ul></div></li>'
  f'<li class="mx-item mx-has mx-mega"><a class="mx-link" href="{B_}business-lines/">Business Lines</a><button class="mx-sub" type="button" aria-expanded="false" aria-label="Business Lines menu"></button>'
  '<div class="mx-drop"><div class="mx-cols">'
- '<div><p class="mx-h">Distillery &amp; Ethanol</p><ul>' + _l('fuel-ethanol/', 'Fuel Ethanol Plants') + _l('distillery-fuel-ethanol/', 'Distillery &amp; Fuel Ethanol') + _l('craft-brewery-plants/', 'Craft Brewery Plants') + '</ul></div>'
+ '<div><p class="mx-h">Distillery &amp; Ethanol</p><ul>' + _l('fuel-ethanol/', 'Fuel Ethanol Plants') + _l('craft-brewery-plants/', 'Craft Brewery Plants') + '</ul></div>'
  '<div><p class="mx-h">CO₂ &amp; Biogas</p><ul>' + _l('co2-recovery-plants/', 'CO₂ Recovery Plants') + _l('bio-cng-biogas-plant-epc-mega-engineering/', 'Biogas &amp; Bio-CNG') + '</ul></div>'
  '<div><p class="mx-h">Evaporation &amp; ZLD</p><ul>' + _l('evaporation-dryer/', 'Evaporation &amp; Dryers') + _l('vinasse-dryer-manufacturer-from-india/', 'Vinasse Spray Dryer') + _l('zero-liquid-discharge-system/', 'Zero Liquid Discharge') + '</ul></div>'
  '<div><p class="mx-h">Equipment &amp; Skids</p><ul>' + _l('modular-process-skid/', 'Modular Process Skids') + _l('critical-process-equipment/', 'Critical Process Equipment') + _l('solvent-recovery-system/', 'Solvent Recovery Systems') + _l('automation-and-controls/', 'Automation &amp; Controls') + '</ul></div>'

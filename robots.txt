@@ -1,0 +1,3 @@
+User-agent: *
+Disallow: /
+# GitHub preview only. REMOVE this and noindex directives upon publishing on www.mega.tc

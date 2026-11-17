@@ -24,3 +24,6 @@ DEPLOY_README.txt
 
 # build reports
 /i18n/missing-*.txt
+/production/
+*.zip
+/MEGA_*/

@@ -1,6 +1,6 @@
 ---
 title: 'GOBARdhan Scheme 2026: Complete CBG Project Guide'
-published: false
+published: true
 date: '2026-11-11'
 author: MEGA Engineering Team
 category: Biogas & CBG

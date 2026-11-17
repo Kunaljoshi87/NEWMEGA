@@ -23,25 +23,42 @@
     } else { done(); }
   }
 
-  // Lead forms: open the visitor's email app with the enquiry filled in, addressed to sales
+  // Lead forms: send the enquiry straight to sales@mega.tc (FormSubmit); email app as fallback
+  var msgFail = 'Não foi possível enviar o formulário. Seu aplicativo de e-mail será aberto com estes dados; clique em enviar. Você também pode nos escrever:';
+  var msgSending = 'Enviando sua solicitação…';
+  var msgOk = 'Obrigado. Sua solicitação foi enviada. Nossa equipe responderá em breve.';
   document.querySelectorAll('form.lead').forEach(function (form) {
     form.addEventListener('submit', function (e) {
       e.preventDefault();
-      var email = form.querySelector('input[type="email"]');
-      if (email && email.value && !email.checkValidity()) { email.reportValidity(); return; }
-      var lines = ['Consulta pelo site da MEGA Engineering', ''];
+      if (!form.checkValidity()) { form.reportValidity(); return; }
+      var data = {}, lines = ['Consulta pelo site da MEGA Engineering', ''];
       form.querySelectorAll('label').forEach(function (l) {
         var f = l.querySelector('input,select,textarea');
         if (!f) return;
         var name = (l.childNodes[0] && l.childNodes[0].textContent || '').trim();
+        data[f.name || name] = (f.value || '').trim();
         lines.push(name + ': ' + (f.value || '').trim());
       });
       lines.push('', 'Page: ' + location.href);
       var subject = form.getAttribute('data-subject') || 'Consulta pelo site';
       var href = 'mailto:sales@mega.tc?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(lines.join('\n'));
-      var msg = form.querySelector('.formmsg');
-      if (msg) msg.innerHTML = 'Seu aplicativo de e-mail será aberto com esses dados. Clique em enviar. Se não abrir, escreva para <a href="' + href + '">sales@mega.tc</a>.';
-      window.location.href = href;
+      var msg = form.querySelector('.formmsg'), btn = form.querySelector('button[type="submit"]');
+      var say = function (h) { if (msg) msg.innerHTML = h; };
+      var fallback = function () {
+        say(msgFail + ' <a href="' + href + '">sales@mega.tc</a>');
+        window.location.href = href;
+      };
+      if (!window.fetch) { fallback(); return; }
+      data._subject = 'MEGA website: ' + subject; data._template = 'table'; data._captcha = 'false'; data.page = location.href;
+      if (data.email) data._replyto = data.email;
+      if (btn) btn.disabled = true;
+      say(msgSending);
+      fetch('https://formsubmit.co/ajax/sales@mega.tc', {
+        method: 'POST', headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }, body: JSON.stringify(data)
+      }).then(function (r) { return r.json(); }).then(function (j) {
+        if (j && (j.success === true || j.success === 'true')) { form.reset(); say(msgOk); }
+        else fallback();
+      }).catch(fallback).then(function () { if (btn) btn.disabled = false; });
     });
   });
 })();
