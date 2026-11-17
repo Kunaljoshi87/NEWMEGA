@@ -3,7 +3,7 @@ title: High-gravity-fermentation
 published: false
 date: 2026-11-02
 author: MEGA Engineering Team
-category: CO2 Recovery
+category: Industrial Technologies
 description: Example draft demonstrating how to format and prepare a technical
   article in the MEGA Engineering blog editor.
 cover: /NEWMEGA/media/blog/high-gravity-fermentation.gif

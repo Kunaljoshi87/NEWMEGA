@@ -71,7 +71,7 @@ def build():
   text=re.sub(r'(src|href)=["\']/(?!NEWMEGA/|https?://)',lambda m:m.group(1)+'="'+BASE,text)
   img=f'<img class="article-hero" loading="eager" src="{clean(p["cover"])}" alt="{clean(p["title"])}">' if p['cover'] else ''
   schema={'@context':'https://schema.org','@type':'BlogPosting','headline':p['title'],'description':p['description'],'datePublished':p['date'],'author':{'@type':'Organization','name':p['author']},'publisher':{'@type':'Organization','name':'MEGA Engineering','url':CANON},'mainEntityOfPage':url}
-  if p['cover']:schema['image']=p['cover'].replace('https://kunaljoshi87.github.io/NEWMEGA/',CANON)
+  if p['cover']:schema['image']=p['cover'].replace('https://mega-engineering.github.io/NEWMEGA/',CANON)
   body=f'''<div class="progress-track"><div class="progress-value"></div></div><main class="article-shell"><a href="{BASE}our-blogs-2/">← Back to all articles</a><p class="kicker">{clean(p['category'])} · {clean(p['date'])}</p><h1>{clean(p['title'])}</h1><p class="article-lead">{clean(p['description'])}</p><p class="editorial-meta">Written by {clean(p['author'])}</p>{img}<div class="body-copy">{text}</div><div class="share-row"><strong>Share this article</strong><a href="https://www.linkedin.com/sharing/share-offsite/?url={url}" target="_blank" rel="noopener">LinkedIn</a><button data-copy-link type="button">Copy link</button></div><div class="blog-cta"><h2>Discuss your next process plant project</h2><p>Talk with MEGA Engineering about your process, EPC and equipment requirements.</p><a href="{BASE}contact-mega-engineering-epc-company/">Contact our team →</a></div></main>'''
   target=ROOT/p['slug'];target.mkdir(exist_ok=True)
   (target/'index.html').write_text(document(p['title']+' | MEGA Engineering',p['description'],url,body,schema,p['cover']),encoding='utf-8')
@@ -89,19 +89,19 @@ def build():
     blocks=''.join(card(p,i) for i,p in enumerate(newest))
     h=h[:a]+'<div class="editorial-grid">'+blocks+h[b:]
     home.write_text(h,encoding='utf-8')
- cats=sorted(set((p.get('category') or 'Engineering Insights') for p in allposts))
+ cats=[c for c in ['Ethanol & Distillery','Biogas & CBG','Industrial Technologies','Company Updates'] if c in {p.get('category') for p in allposts}]
  filters='<button class="filter-pill active" data-filter="All">All articles</button>'+''.join(f'<button class="filter-pill" data-filter="{clean(cat)}">{clean(cat)}</button>' for cat in cats)
  tiles=''.join(card(p,i) for i,p in enumerate(allposts))
- listing=f'''<main><section class="blog-list-banner"><div class="wrap"><p class="kicker">TECHNICAL ARTICLES & COMPANY KNOWLEDGE</p><h1>Insights from MEGA Engineering</h1><p class="lede">Explore practical perspectives on ethanol, biogas, CO₂ recovery, industrial equipment and sustainable process technology.</p><div class="blog-controls"><input id="blog-search" class="blog-search" type="search" aria-label="Search blog articles" placeholder="Search articles, topics, technology...">{filters}</div></div></section><section class="news-section"><div class="wrap"><div class="editorial-grid">{tiles}</div><p id="no-posts" class="empty-results" hidden>No articles match the selected category or search.</p></div></section></main>'''
+ listing=f'''<main><section class="blog-list-banner"><div class="wrap"><p class="kicker">Engineering, Industry &amp; Company Updates</p><h1>Insights from MEGA Engineering</h1><p class="lede">Explore technical articles, industry developments, project highlights and company news from MEGA Engineering.</p><div class="blog-controls"><input id="blog-search" class="blog-search" type="search" aria-label="Search blog articles" placeholder="Search articles, topics, technology...">{filters}</div></div></section><section class="news-section"><div class="wrap"><div class="editorial-grid">{tiles}</div><p id="no-posts" class="empty-results" hidden>No articles match the selected category or search.</p></div></section></main>'''
  ls={'@context':'https://schema.org','@type':'CollectionPage','name':'MEGA Engineering Articles','url':CANON+'our-blogs-2/','mainEntity':{'@type':'ItemList','itemListElement':[{'@type':'ListItem','position':i+1,'url':CANON+p['slug']+'/'} for i,p in enumerate(allposts)]}}
- content=document('Engineering Articles & Insights | MEGA Engineering','Technical articles from MEGA Engineering on ethanol plants, biogas and CBG, CO₂ recovery, evaporation, ZLD and industrial EPC projects.',CANON+'our-blogs-2/',listing,ls)
+ content=document('Insights: Engineering, Industry & Company Updates | MEGA Engineering','Technical articles from MEGA Engineering on ethanol plants, biogas and CBG, CO₂ recovery, evaporation, ZLD and industrial EPC projects.',CANON+'our-blogs-2/',listing,ls)
  for key in ['our-blogs-2','blog']:
   path=ROOT/key;path.mkdir(exist_ok=True);(path/'index.html').write_text(content.replace('https://www.mega.tc/our-blogs-2/',CANON+key+'/') if key=='blog' else content,encoding='utf-8')
  # sitemap preview includes all original static paths + new articles
  allpages=[f'/{p.parent.relative_to(ROOT).as_posix()}/' if p.parent!=ROOT else '/' for p in ROOT.rglob('index.html') if not any(x in p.parts for x in ('.git','content','scripts'))]
  allpages=sorted(set(allpages))
  sitemap=lambda base:'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'+''.join(f'<url><loc>{html.escape(base+slug.lstrip("/"))}</loc></url>\n' for slug in allpages)+'</urlset>\n'
- (ROOT/'sitemap-preview.xml').write_text(sitemap('https://kunaljoshi87.github.io/NEWMEGA/'),encoding='utf-8')
+ (ROOT/'sitemap-preview.xml').write_text(sitemap('https://mega-engineering.github.io/NEWMEGA/'),encoding='utf-8')
  (ROOT/'sitemap-production.xml').write_text(sitemap(CANON),encoding='utf-8')
  print('Published existing WordPress blogs:',len(legacy),'New published CMS posts:',len(posts),'Total article cards:',len(allposts),'Static pages:',len(allpages))
 if __name__=='__main__':build()

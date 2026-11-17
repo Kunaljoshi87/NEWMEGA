@@ -39,12 +39,12 @@ B_ = BASE
 def _l(path, text): return f'<li><a href="{B_}{path}">{text}</a></li>'
 NAV_HTML = (
  '<header class="mx-header"><div class="mx-hwrap">'
- f'<a class="mx-logo" href="{B_}" aria-label="MEGA Engineering home"><img src="{B_}assets/mega-logo.png" alt="MEGA Engineering" width="150" height="43"/></a>'
+ f'<a class="mx-logo" href="{B_}" aria-label="MEGA Engineering home"><img class="mx-logo-dark" src="{B_}assets/mega-logo-t.png" alt="MEGA Engineering" width="101" height="42"/><img class="mx-logo-light" src="{B_}assets/mega-logo-light.png" alt="" aria-hidden="true" width="101" height="42"/></a>'
  '<nav class="mx-nav" id="mx-nav" aria-label="Main navigation"><ul class="mx-menu">'
  f'<li class="mx-item"><a class="mx-link" href="{B_}">Home</a></li>'
  f'<li class="mx-item mx-has"><a class="mx-link" href="{B_}about-us/">About Us</a><button class="mx-sub" type="button" aria-expanded="false" aria-label="About Us menu"></button>'
  '<div class="mx-drop"><ul>'
- + _l('about-us/', 'Company Overview') + _l('our-blogs-2/', 'Blogs &amp; Insights') + _l('faqs/', 'FAQs') + _l('contact-mega-engineering-epc-company/', 'Contact Details') +
+ + _l('about-us/', 'Company Overview') + _l('faqs/', 'FAQs') + _l('contact-mega-engineering-epc-company/', 'Contact Details') +
  '</ul></div></li>'
  f'<li class="mx-item mx-has mx-mega"><a class="mx-link" href="{B_}business-lines/">Business Lines</a><button class="mx-sub" type="button" aria-expanded="false" aria-label="Business Lines menu"></button>'
  '<div class="mx-drop"><div class="mx-cols">'
@@ -58,6 +58,7 @@ NAV_HTML = (
  '<div class="mx-drop"><ul>'
  + _l('projects/', 'Project References') + _l('projects/#featured', 'Featured Projects') + _l('projects/#regions', 'Projects by Region') + _l('projects/#delivery', 'How We Deliver') +
  '</ul></div></li>'
+ f'<li class="mx-item"><a class="mx-link" href="{B_}our-blogs-2/">Insights</a></li>'
  f'<li class="mx-item"><a class="mx-link" href="{B_}careers/">Careers</a></li>'
  f'<li class="mx-item"><a class="mx-link" href="{B_}contact-mega-engineering-epc-company/">Contact</a></li>'
  '</ul></nav>'
@@ -66,7 +67,7 @@ NAV_HTML = (
 
 CTA_HTML = ('<section class="mx-cta-band" aria-label="Contact MEGA"><div class="mx-cta-in"><div>'
  '<h2>Think Projects! Think MEGA!</h2>'
- '<p>Planning a new distillery, a capacity expansion, or turning your effluent into value? Talk to our engineers.</p></div>'
+ '<p>Planning a new process plant, expanding an existing facility or upgrading your operations? MEGA\'s engineering team is ready to understand your requirements and explore the right solution for your project.</p></div>'
  '<div class="mx-cta-btns"><a class="mx-btn" href="mailto:sales@mega.tc">Email sales@mega.tc</a>'
  '<a class="mx-btn mx-btn-line" href="tel:+917276011520">Call +91 72760 11520</a></div></div></section>')
 
@@ -75,11 +76,15 @@ LEGAL_HTML = (f'<div class="mx-legal"><a href="{B_}privacy-policy/">Privacy Poli
 
 def unify(html):
     """Same header, footer call-to-action and legal links on every page (English source)."""
-    if 'class="mx-header"' not in html:
+    if 'class="mx-header"' in html:  # keep the shared header current
+        html = re.sub(r'<header class="mx-header">.*?</header>', lambda m: NAV_HTML, html, count=1, flags=re.S)
+    else:
         html, n = re.subn(r'<header class="(?:site|header|mega-head)"[^>]*>.*?</header>', NAV_HTML, html, count=1, flags=re.S)
         if not n:  # page without a site header (e.g. GOBARdhan article)
             html = re.sub(r'(<body\b[^>]*>)', lambda m: m.group(1) + NAV_HTML, html, count=1)
-    if 'class="mx-cta-band"' not in html:
+    if 'class="mx-cta-band"' in html:
+        html = re.sub(r'<section class="mx-cta-band".*?</section>', lambda m: CTA_HTML, html, count=1, flags=re.S)
+    else:
         html = re.sub(r'(<footer\b)', CTA_HTML + r'\1', html, count=1)
     if 'class="mx-legal"' not in html:
         html = re.sub(r'(</footer>)', LEGAL_HTML + r'\1', html, count=1)
@@ -207,7 +212,7 @@ def main():
     for slug, p in pages.items():
         p.write_text(decorate(sources[slug], slug, 'en', published), encoding='utf-8')
     # sitemaps
-    for name, base in (('sitemap-preview.xml', 'https://kunaljoshi87.github.io/NEWMEGA/'), ('sitemap-production.xml', CANON)):
+    for name, base in (('sitemap-preview.xml', 'https://mega-engineering.github.io/NEWMEGA/'), ('sitemap-production.xml', CANON)):
         sm = ROOT / name
         if sm.exists():
             x = sm.read_text(encoding='utf-8')

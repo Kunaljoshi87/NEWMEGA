@@ -29,7 +29,7 @@ def main():
             shutil.copy2(src, dst)
             continue
         t = src.read_text(encoding='utf-8')
-        t = t.replace('https://kunaljoshi87.github.io/NEWMEGA/', SITE).replace('/NEWMEGA/', '/')
+        t = t.replace('https://mega-engineering.github.io/NEWMEGA/', SITE).replace('/NEWMEGA/', '/')
         if src.suffix == '.html' and rel.parts[0] not in KEEP_NOINDEX:
             t = re.sub(r'<meta[^>]*name="robots"[^>]*>\s*|<meta[^>]*content="noindex[^"]*"[^>]*name="robots"[^>]*>\s*', '', t)
         dst.write_text(t, encoding='utf-8')

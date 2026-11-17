@@ -153,5 +153,42 @@
       } catch (e) {}
     });
   });
+  /* project slider: buttons, dots, swipe, autoplay (paused on hover/focus or reduced motion) */
+  [].forEach.call(document.querySelectorAll('.mx-slider'), function (sl) {
+    var track = sl.querySelector('.mx-track'), slides = track ? track.children : [], n = slides.length;
+    if (!n) return;
+    var dots = sl.querySelector('.mx-dots'), idx = 0, timer = null, label = 'Ir para o projeto ';
+    var go = function (i) {
+      idx = (i + n) % n; track.style.transform = 'translateX(' + (-100 * idx) + '%)';
+      for (var k = 0; k < n; k++) {
+        slides[k].setAttribute('aria-hidden', String(k !== idx));
+        var a = slides[k].querySelector('a'); if (a) a.tabIndex = k === idx ? 0 : -1;
+        if (dots && dots.children[k]) dots.children[k].setAttribute('aria-current', String(k === idx));
+      }
+    };
+    if (dots) for (var d = 0; d < n; d++) (function (d) {
+      var b = document.createElement('button'); b.type = 'button'; b.setAttribute('aria-label', label + (d + 1));
+      b.addEventListener('click', function () { go(d); restart(); }); dots.appendChild(b);
+    })(d);
+    var prev = sl.querySelector('.mx-sl-prev'), next = sl.querySelector('.mx-sl-next');
+    if (prev) prev.addEventListener('click', function () { go(idx - 1); restart(); });
+    if (next) next.addEventListener('click', function () { go(idx + 1); restart(); });
+    var stop = function () { if (timer) { clearInterval(timer); timer = null; } };
+    var start = function () { if (!reduce && !timer) timer = setInterval(function () { go(idx + 1); }, 5000); };
+    var restart = function () { stop(); start(); };
+    sl.addEventListener('mouseenter', stop); sl.addEventListener('mouseleave', start);
+    sl.addEventListener('focusin', stop); sl.addEventListener('focusout', start);
+    sl.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowLeft') { go(idx - 1); restart(); } else if (e.key === 'ArrowRight') { go(idx + 1); restart(); }
+    });
+    var x0 = null;
+    track.addEventListener('touchstart', function (e) { x0 = e.touches[0].clientX; stop(); }, { passive: true });
+    track.addEventListener('touchend', function (e) {
+      if (x0 === null) return; var dx = e.changedTouches[0].clientX - x0; x0 = null;
+      if (Math.abs(dx) > 40) go(idx + (dx < 0 ? 1 : -1)); start();
+    });
+    document.addEventListener('visibilitychange', function () { if (document.hidden) stop(); else start(); });
+    go(0); start();
+  });
   onScroll();
 })();
