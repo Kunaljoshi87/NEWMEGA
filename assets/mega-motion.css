@@ -351,3 +351,24 @@ form.mx-form .formmsg{margin:0;font-weight:600;color:#36618E}
  .mx-sl-btn{top:96px}
  .mx-dots{bottom:14px}
 }
+/* round 5: plain backgrounds, smaller slider, one-line trust strip */
+.mega-engagement{background:#f4f8fc!important}
+#references{background:#fff!important}
+.mx-slider{max-width:980px;margin-left:auto;margin-right:auto}
+.mx-slide img{height:clamp(220px,32vw,420px)}
+.mx-slide-cap{padding:44px 22px 40px}
+.mx-slide-cap strong{font-size:clamp(1rem,1.6vw,1.25rem)}
+.mx-slide-cap p{font-size:.92rem}
+.mx-trust{flex-wrap:nowrap;justify-content:space-between;gap:12px 22px;padding:14px max(16px,calc((100% - 1240px)/2));font-size:.88rem;overflow-x:auto;scrollbar-width:none}
+.mx-trust::-webkit-scrollbar{display:none}
+.mx-trust span{white-space:nowrap}
+@media (max-width:900px){.mx-trust{justify-content:flex-start}}
+@media (max-width:600px){.mx-slide img{height:210px}}
+@media (max-width:760px){.mx-trust{flex-wrap:wrap;justify-content:center;overflow:visible}.mx-trust span{white-space:normal}}
+@media (min-width:761px){.mx-trust{font-size:clamp(.7rem,.98vw,.9rem);gap:10px 1.4vw;padding-left:max(14px,calc((100% - 1300px)/2));padding-right:max(14px,calc((100% - 1300px)/2))}.mx-trust span{gap:6px}}
+/* trust strip: always one line; scrolls smoothly when it does not fit */
+.mx-trust,.mx-trust span{flex-wrap:nowrap!important;white-space:nowrap!important}
+.mx-trust{font-size:.88rem!important;gap:10px 26px!important;justify-content:center!important;overflow:hidden!important}
+.mx-trust.mx-tick{justify-content:flex-start!important;padding-left:0!important;padding-right:0!important}
+.mx-trust .mx-tick-row{display:flex;gap:26px;padding-right:26px;flex:none;animation:mxMarq 30s linear infinite}
+.mx-trust.mx-tick:hover .mx-tick-row{animation-play-state:paused}

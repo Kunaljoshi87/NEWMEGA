@@ -174,10 +174,8 @@
     if (prev) prev.addEventListener('click', function () { go(idx - 1); restart(); });
     if (next) next.addEventListener('click', function () { go(idx + 1); restart(); });
     var stop = function () { if (timer) { clearInterval(timer); timer = null; } };
-    var start = function () { if (!reduce && !timer) timer = setInterval(function () { go(idx + 1); }, 5000); };
+    var start = function () { if (!timer) timer = setInterval(function () { go(idx + 1); }, 4000); };
     var restart = function () { stop(); start(); };
-    sl.addEventListener('mouseenter', stop); sl.addEventListener('mouseleave', start);
-    sl.addEventListener('focusin', stop); sl.addEventListener('focusout', start);
     sl.addEventListener('keydown', function (e) {
       if (e.key === 'ArrowLeft') { go(idx - 1); restart(); } else if (e.key === 'ArrowRight') { go(idx + 1); restart(); }
     });
@@ -190,5 +188,18 @@
     document.addEventListener('visibilitychange', function () { if (document.hidden) stop(); else start(); });
     go(0); start();
   });
+  /* trust strip: keep one line; if it is wider than the screen, scroll it like a ticker */
+  var trust = document.querySelector('.mx-trust');
+  if (trust) {
+    var fit = function () {
+      if (trust.classList.contains('mx-tick')) return;
+      if (trust.scrollWidth <= trust.clientWidth + 2) return;
+      var row = document.createElement('div'); row.className = 'mx-tick-row';
+      while (trust.firstChild) row.appendChild(trust.firstChild);
+      var copy = row.cloneNode(true); copy.setAttribute('aria-hidden', 'true');
+      trust.appendChild(row); trust.appendChild(copy); trust.classList.add('mx-tick');
+    };
+    fit(); addEventListener('resize', fit);
+  }
   onScroll();
 })();
