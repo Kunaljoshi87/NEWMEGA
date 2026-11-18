@@ -270,10 +270,14 @@
 .vsd figcaption.v-note{flex-wrap:wrap}
 @media (max-width:640px){
   .vsd table{display:block;max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}
-  .vsd td,.vsd th{overflow-wrap:anywhere}
+  .vsd td,.vsd th{overflow-wrap:break-word;word-break:normal}
   .vsd .titleblock{grid-template-columns:repeat(2,minmax(0,1fr))}
   .vsd .titleblock div{white-space:normal;border-bottom:1px solid var(--line)}
   .vsd .titleblock div:nth-child(2n){border-right:0}
   .vsd .conc b{font-size:clamp(22px,7vw,32px)}
   .vsd .v-hero h1{font-size:clamp(36px,11vw,60px)}
 }
+
+/* phone: stack column pairs even when the page sets them inline; wide tables scroll instead of squeezing */
+@media (max-width:860px){.vsd .cols{grid-template-columns:minmax(0,1fr)!important}}
+@media (max-width:600px){.vsd .tbl-wrap table:has(th:nth-child(3)),.vsd .tbl-wrap table:has(td:nth-child(3)){min-width:520px}.vsd .tbl-wrap{-webkit-overflow-scrolling:touch}}

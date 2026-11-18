@@ -469,3 +469,58 @@ section.alt{background:#f4f8fc}
 .mx-cbg-table th,.mx-cbg-table td{overflow-wrap:anywhere}
 @media (max-width:760px){.mx-cbg-duo,.mx-cbg-three,.mx-cbg-plant,.mx-cbg-perf,.mx-cbg-pics3{grid-template-columns:minmax(0,1fr)}.mx-cbg-who,.mx-cbg-flow{grid-template-columns:repeat(2,minmax(0,1fr))}.mx-cbg-table tbody th{width:55%}}
 .mx-cbg-perf .mx-cbg-table{min-width:0}
+
+/* ---- round 7: phone = same quality as laptop ---- */
+/* WhatsApp sits above back-to-top on the right, never over content buttons */
+.mx-wa{left:auto;right:18px;bottom:84px;width:52px;height:52px}
+@media (max-width:600px){.mx-wa{right:14px;bottom:76px;width:48px;height:48px}.mx-wa svg{width:24px;height:24px}.mx-top{right:14px!important;bottom:18px!important}}
+/* call button in the blue CTA band was invisible */
+.mx-cta-band .mx-btn-line{background:transparent;border:2px solid rgba(255,255,255,.85);color:#fff!important}
+.mx-cta-band .mx-btn-line:hover{background:#fff;color:#1f4f7c!important}
+/* specs tables (CO2, skids etc.) wrap on phone instead of being cut */
+@media (max-width:600px){
+ table{min-width:0!important}
+ .specs table,.spec table,table.spec{font-size:.9rem}
+ td,th{word-break:normal}
+}
+/* home: solutions catalogue becomes a swipe row on phone (like an app), process steps compact */
+@media (max-width:700px){
+ #mega-technology-directory .mega-cards{display:flex!important;overflow-x:auto;scroll-snap-type:x mandatory;gap:14px;padding:4px 2px 14px;margin:0 -16px;padding-left:16px;padding-right:16px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+ #mega-technology-directory .mega-cards::-webkit-scrollbar{display:none}
+ #mega-technology-directory .mega-card{flex:0 0 78%;scroll-snap-align:start;max-width:320px}
+ #mega-technology-directory .mega-card[hidden],#mega-technology-directory .mega-card.is-hidden{display:none!important}
+ #mega-technology-directory .mega-card img{height:150px;object-fit:cover}
+ #mega-technology-directory .mega-card-body p{display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
+ #mega-technology-directory .mega-filter{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin:0 -16px;padding:0 16px 6px}
+ #mega-technology-directory .mega-filter button{flex:none}
+ .mx-swipe-hint{display:block;font-size:.85rem;color:#52677c;margin:4px 0 0}
+ .mx-proc{gap:10px}
+ .mx-proc li{padding:14px 14px 14px 58px}
+ .mx-proc li::before{left:14px;top:14px;font-size:1.25rem}
+ .mx-proc li::after{display:none}
+ .mx-proc strong{font-size:1rem;margin-bottom:2px}
+ /* distillery references: compact rows */
+ #references .refs .ref,#distilleries .refs .ref{display:grid;grid-template-columns:96px 1fr;gap:4px 12px;align-items:start;padding:10px 0}
+ #references .refs .who strong,#distilleries .refs .who strong{font-size:1.1rem}
+ #references .refs .who span,#distilleries .refs .who span{font-size:.8rem}
+ #references .refs .track,#distilleries .refs .track{height:10px;margin:6px 0 6px}
+ #references .refs small,#distilleries .refs small{font-size:.82rem;line-height:1.35}
+ #references .shots,#distilleries .shots{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:12px;margin:0 -16px;padding:0 16px 10px;scrollbar-width:none}
+ #references .shots figure,#distilleries .shots figure{flex:0 0 80%;scroll-snap-align:start}
+}
+@media (min-width:701px){.mx-swipe-hint{display:none}}
+/* CBG reference table becomes cards on phone */
+@media (max-width:760px){
+ .mx-cbg-tablewrap{border:0;overflow:visible}
+ .mx-cbg-refs{min-width:0!important;display:block}
+ .mx-cbg-refs thead{display:none}
+ .mx-cbg-refs tbody{display:grid;gap:10px}
+ .mx-cbg-refs tr{display:grid;grid-template-columns:1fr 1fr;gap:2px 12px;background:#fff;border:1px solid #dce5ee;border-radius:12px;padding:12px 14px}
+ .mx-cbg-refs td{border:0;padding:2px 0;overflow-wrap:break-word;font-size:.9rem;min-width:0!important}
+ .mx-cbg-refs td:nth-child(1){grid-column:1/-1;font-size:1.05rem}
+ .mx-cbg-refs td:nth-child(2)::after{content:" · "}
+ .mx-cbg-refs td:nth-child(4){grid-column:1/-1;color:#52677c}
+ .mx-cbg-refs td:nth-child(5){grid-column:1/-1;font-weight:700;color:#1f4f7c}
+ .mx-cbg-refs td:nth-child(6)::after{content:" Nm³/yr"}
+ .mx-cbg-refs td:nth-child(7)::after{content:" t CO₂/yr"}
+}
