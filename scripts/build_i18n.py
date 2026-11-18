@@ -124,6 +124,9 @@ def decorate(html, slug, lang, published):
     html = re.sub(r'<nav\b[^>]*class="lang-switch"[^>]*>.*?</nav>', '', html, flags=re.S)
     html = re.sub(r'<div class="lang-bar">\s*</div>', '', html)
     html = re.sub(r'<link\b(?=[^>]*\bhreflang=)[^>]*>', '', html)
+    # always light design: stop phones/browsers from auto-darkening (text vanished in dark mode)
+    if 'name="color-scheme"' not in html:
+        html = re.sub(r'(<head\b[^>]*>)', r'\1<meta name="color-scheme" content="only light"/>', html, count=1)
     sw = switcher(slug, lang, published)
     m = re.search(r'<header class="(?:site|header|mega-head|mx-header)"[^>]*>.*?</nav>', html, flags=re.S)
     if m:

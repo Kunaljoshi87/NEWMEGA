@@ -1,3 +1,4 @@
+:root{color-scheme:only light}
 /* MEGA motion layer: language switcher, reveal, counters, hover, header, back-to-top, process graphics */
 
 /* ---------- long words (German-style compounds, Russian) never push the page wider ---------- */
@@ -524,3 +525,7 @@ section.alt{background:#f4f8fc}
  .mx-cbg-refs td:nth-child(6)::after{content:" Nm³/yr"}
  .mx-cbg-refs td:nth-child(7)::after{content:" t CO₂/yr"}
 }
+/* reference table: no letter-by-letter wrapping on any screen */
+.mx-cbg-table th,.mx-cbg-table td{overflow-wrap:normal!important;word-break:normal!important;hyphens:none}
+.mx-cbg-refs th:nth-child(n+5),.mx-cbg-refs td:nth-child(n+5),.mx-cbg-refs td:nth-child(3),.mx-cbg-refs th:nth-child(3){white-space:nowrap}
+.mx-cbg-refs td:nth-child(4){min-width:200px}
