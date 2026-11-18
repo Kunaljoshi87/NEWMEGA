@@ -1,3 +1,5 @@
+# Pages CMS configuration: lets the MEGA team write blog articles without coding.
+# Editor: https://app.pagescms.org  ·  Repository: Mega-Engineering/NEWMEGA
 media:
   input: media/blog
   output: /NEWMEGA/media/blog
@@ -5,7 +7,7 @@ media:
   categories: [image]
 content:
   - name: posts
-    label: Blog articles
+    label: Blog articles (Insights)
     type: collection
     path: content/posts
     format: yaml-frontmatter
@@ -18,11 +20,14 @@ content:
     fields:
       - name: title
         label: Article title
+        description: "Clear headline, 50–70 characters. Example: How CBG Plants Turn Press Mud into Vehicle Fuel"
         type: string
         required: true
       - name: published
         label: Publish on website
+        description: "Off = draft (saved but not shown). On = visible on the website about 2 minutes after you save."
         type: boolean
+        default: false
       - name: date
         label: Article date
         type: date
@@ -31,21 +36,28 @@ content:
           format: yyyy-MM-dd
       - name: author
         label: Author
+        description: "Your name, or MEGA Engineering Team"
         type: string
+        default: MEGA Engineering Team
       - name: category
         label: Category
         type: select
+        required: true
+        default: Industrial Technologies
         options:
-          values: [Ethanol & Distillery, CO2 Recovery, Biogas & CBG, Industrial Equipment, Engineering Insights, Sustainability]
+          values: [Ethanol & Distillery, Biogas & CBG, Industrial Technologies, Company Updates]
       - name: description
-        label: SEO description (120-160 characters)
+        label: Short summary (shown on Google and on the article card)
+        description: "1–2 sentences, 120–160 characters."
         type: text
         required: true
       - name: cover
         label: Featured image
+        description: "Landscape photo, at least 1200 px wide. JPG or PNG under 500 KB works best."
         type: image
       - name: body
         label: Article content
+        description: "Use Heading 2 for main sections (a table of contents is made automatically), Heading 3 for sub-sections. You can add images, lists, links and tables."
         type: rich-text
         required: true
         options:

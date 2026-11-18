@@ -201,5 +201,14 @@
     };
     fit(); addEventListener('resize', fit);
   }
+  /* WhatsApp chat button (number in one place) */
+  var WA_NUMBER = '917276011520';
+  if (!document.querySelector('.mx-wa')) {
+    var wa = document.createElement('a'); wa.className = 'mx-wa';
+    wa.href = 'https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent('Здравствуйте, MEGA Engineering! Хочу обсудить свой проект с вашей командой.');
+    wa.target = '_blank'; wa.rel = 'noopener'; wa.setAttribute('aria-label', 'Написать нам в WhatsApp');
+    wa.innerHTML = '<svg viewBox="0 0 32 32" width="28" height="28" aria-hidden="true"><path fill="#fff" d="M16 3C8.8 3 3 8.7 3 15.8c0 2.5.7 4.9 2 7L3 29l6.4-2c2 1.1 4.3 1.7 6.6 1.7 7.2 0 13-5.7 13-12.8S23.2 3 16 3zm0 23.4c-2.1 0-4.1-.6-5.9-1.7l-.4-.3-3.8 1.2 1.2-3.7-.3-.4a10.3 10.3 0 0 1-1.7-5.7C5.1 9.9 10 5.1 16 5.1s10.9 4.8 10.9 10.7S22 26.4 16 26.4zm6-8c-.3-.2-1.9-.9-2.2-1-.3-.1-.5-.2-.7.2l-1 1.2c-.2.2-.4.2-.7.1-.3-.2-1.4-.5-2.6-1.6-1-.9-1.6-1.9-1.8-2.2-.2-.3 0-.5.1-.7l.5-.6.3-.5c.1-.2 0-.4 0-.5l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.4s1 2.8 1.2 3c.2.2 2 3.1 4.9 4.3 2.4 1 2.9.8 3.4.7.5-.1 1.7-.7 1.9-1.4.2-.7.2-1.3.2-1.4-.1-.1-.3-.2-.6-.3z"/></svg>';
+    document.body.appendChild(wa);
+  }
   onScroll();
 })();

@@ -4,6 +4,7 @@ from pathlib import Path
 import os,re,html,json,datetime,shutil
 from urllib.parse import urlparse
 import yaml,mistune
+MD=mistune.create_markdown(escape=False,plugins=['table','strikethrough','url','footnotes','task_lists'])
 ROOT=Path(__file__).resolve().parents[1]
 BASE=os.environ.get('MEGA_BASE','/NEWMEGA/').rstrip('/')+'/'
 PROD=os.environ.get('MEGA_PRODUCTION','0')=='1'
@@ -22,7 +23,7 @@ def imgsrc(path):
 
 def read_posts():
  posts=[]
- for path in sorted((ROOT/'content/posts').glob('*.md')):
+ for path in sorted(list((ROOT/'content/posts').glob('*.md'))+list((ROOT/'content/special').glob('*.md'))):
   raw=path.read_text(encoding='utf-8')
   mt=re.match(r'\A---\s*\n(.*?)\n---\s*\n(.*)',raw,re.S)
   if not mt:continue
@@ -59,6 +60,7 @@ def build():
  posts=read_posts(); used={p['slug'] for p in posts}
  # keep old WordPress article paths; dynamically created posts can never overwrite existing original pages
  posts=[p for p in posts if p.get('content_format')=='standalone-html' or not (ROOT/p['slug']/'index.html').exists() or 'class="article-shell"' in (ROOT/p['slug']/'index.html').read_text(encoding='utf-8',errors='ignore')]
+ allcards=posts+[q for q in legacy if q['slug'] not in {x['slug'] for x in posts}]
  for p in posts:
   url=CANON+p['slug']+'/'
   if p.get('content_format')=='standalone-html':
@@ -66,13 +68,29 @@ def build():
    if not (ROOT/p['slug']/'index.html').exists():
     raise FileNotFoundError('Standalone HTML missing for '+p['slug'])
    continue
-  text=p['body'] if p.get('content_format')=='trusted-html' else mistune.html(p['body'])
+  text=p['body'] if p.get('content_format')=='trusted-html' else MD(p['body'])
+  toc=''
+  if p.get('content_format')!='trusted-html':
+   heads=[]
+   def _h2(m):
+    inner=m.group(1); hid=slugify(re.sub(r'<[^>]+>','',inner))[:60] or 'section'
+    while hid in [x[0] for x in heads]: hid+='-x'
+    heads.append((hid,re.sub(r'<[^>]+>','',inner))); return f'<h2 id="{hid}">{inner}</h2>'
+   text=re.sub(r'<h2>(.*?)</h2>',_h2,text,flags=re.S)
+   if len(heads)>=3:
+    toc='<nav class="post-toc" aria-label="In this article"><strong>In this article</strong><ol>'+''.join(f'<li><a href="#{a}">{clean(b)}</a></li>' for a,b in heads)+'</ol></nav>'
+   text=re.sub(r'<table>',r'<div class="post-table"><table>',text).replace('</table>','</table></div>')
+  words=len(re.sub(r'<[^>]+>',' ',text).split()); mins=max(1,round(words/200))
+  others=[q for q in allcards if q['slug']!=p['slug']]
+  rel=[q for q in others if q.get('category')==p['category']][:3]
+  rel+= [q for q in others if q not in rel][:3-len(rel)]
+  related='<section class="post-related"><h2>Related articles</h2><div class="editorial-grid">'+''.join(card(q,i) for i,q in enumerate(rel))+'</div></section>' if rel else ''
   # images in rich text must remain relative to repo prefix
   text=re.sub(r'(src|href)=["\']/(?!NEWMEGA/|https?://)',lambda m:m.group(1)+'="'+BASE,text)
   img=f'<img class="article-hero" loading="eager" src="{clean(p["cover"])}" alt="{clean(p["title"])}">' if p['cover'] else ''
   schema={'@context':'https://schema.org','@type':'BlogPosting','headline':p['title'],'description':p['description'],'datePublished':p['date'],'author':{'@type':'Organization','name':p['author']},'publisher':{'@type':'Organization','name':'MEGA Engineering','url':CANON},'mainEntityOfPage':url}
   if p['cover']:schema['image']=p['cover'].replace('https://mega-engineering.github.io/NEWMEGA/',CANON)
-  body=f'''<div class="progress-track"><div class="progress-value"></div></div><main class="article-shell"><a href="{BASE}our-blogs-2/">← Back to all articles</a><p class="kicker">{clean(p['category'])} · {clean(p['date'])}</p><h1>{clean(p['title'])}</h1><p class="article-lead">{clean(p['description'])}</p><p class="editorial-meta">Written by {clean(p['author'])}</p>{img}<div class="body-copy">{text}</div><div class="share-row"><strong>Share this article</strong><a href="https://www.linkedin.com/sharing/share-offsite/?url={url}" target="_blank" rel="noopener">LinkedIn</a><button data-copy-link type="button">Copy link</button></div><div class="blog-cta"><h2>Discuss your next process plant project</h2><p>Talk with MEGA Engineering about your process, EPC and equipment requirements.</p><a href="{BASE}contact-mega-engineering-epc-company/">Contact our team →</a></div></main>'''
+  body=f'''<div class="progress-track"><div class="progress-value"></div></div><main class="article-shell"><a href="{BASE}our-blogs-2/">← Back to all articles</a><p class="kicker">{clean(p['category'])} · {clean(p['date'])}</p><h1>{clean(p['title'])}</h1><p class="article-lead">{clean(p['description'])}</p><p class="editorial-meta">Written by {clean(p['author'])} · {mins} min read</p>{img}{toc}<div class="body-copy">{text}</div><div class="share-row"><strong>Share this article</strong><a href="https://www.linkedin.com/sharing/share-offsite/?url={url}" target="_blank" rel="noopener">LinkedIn</a><button data-copy-link type="button">Copy link</button></div><div class="blog-cta"><h2>Discuss your next process plant project</h2><p>Talk with MEGA Engineering about your process, EPC and equipment requirements.</p><a href="{BASE}contact-mega-engineering-epc-company/">Contact our team →</a></div>{related}</main>'''
   target=ROOT/p['slug'];target.mkdir(exist_ok=True)
   (target/'index.html').write_text(document(p['title']+' | MEGA Engineering',p['description'],url,body,schema,p['cover']),encoding='utf-8')
  allposts=posts+[p for p in legacy if p['slug'] not in {x['slug'] for x in posts}]
