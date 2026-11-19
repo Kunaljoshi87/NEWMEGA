@@ -82,9 +82,11 @@ def unify(html):
         html, n = re.subn(r'<header class="(?:site|header|mega-head)"[^>]*>.*?</header>', NAV_HTML, html, count=1, flags=re.S)
         if not n:  # page without a site header (e.g. GOBARdhan article)
             html = re.sub(r'(<body\b[^>]*>)', lambda m: m.group(1) + NAV_HTML, html, count=1)
-    if 'class="mx-cta-band"' in html:
+    if 'data-mx-nocta' in html:
+        html = re.sub(r'<section class="mx-cta-band".*?</section>', '', html, count=1, flags=re.S)
+    elif 'class="mx-cta-band"' in html:
         html = re.sub(r'<section class="mx-cta-band".*?</section>', lambda m: CTA_HTML, html, count=1, flags=re.S)
-    else:
+    elif 'data-mx-nocta' not in html:
         html = re.sub(r'(<footer\b)', CTA_HTML + r'\1', html, count=1)
     if 'class="mx-legal"' not in html:
         html = re.sub(r'(</footer>)', LEGAL_HTML + r'\1', html, count=1)
