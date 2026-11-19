@@ -2,7 +2,6 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url><loc>https://mega-engineering.github.io/NEWMEGA/</loc></url>
 <url><loc>https://mega-engineering.github.io/NEWMEGA/about-us/</loc></url>
-<url><loc>https://mega-engineering.github.io/NEWMEGA/admin/</loc></url>
 <url><loc>https://mega-engineering.github.io/NEWMEGA/automation-and-controls/</loc></url>
 <url><loc>https://mega-engineering.github.io/NEWMEGA/bio-cng-biogas-plant-epc-mega-engineering/</loc></url>
 <url><loc>https://mega-engineering.github.io/NEWMEGA/biogas-feedstocks-and-challenges/</loc></url>
@@ -10,15 +9,14 @@
 <url><loc>https://mega-engineering.github.io/NEWMEGA/blog/</loc></url>
 <url><loc>https://mega-engineering.github.io/NEWMEGA/business-lines/</loc></url>
 <url><loc>https://mega-engineering.github.io/NEWMEGA/careers/</loc></url>
-<url><loc>https://mega-engineering.github.io/NEWMEGA/category/our-blog/</loc></url>
 <url><loc>https://mega-engineering.github.io/NEWMEGA/cbg-technology-partnership-oekobit/</loc></url>
 <url><loc>https://mega-engineering.github.io/NEWMEGA/co2-recovery-plants/</loc></url>
 <url><loc>https://mega-engineering.github.io/NEWMEGA/condensate-recovery-system-distillery-plants/</loc></url>
 <url><loc>https://mega-engineering.github.io/NEWMEGA/contact-mega-engineering-epc-company/</loc></url>
-<url><loc>https://mega-engineering.github.io/NEWMEGA/contact-us/</loc></url>
 <url><loc>https://mega-engineering.github.io/NEWMEGA/cookie-policy/</loc></url>
 <url><loc>https://mega-engineering.github.io/NEWMEGA/craft-brewery-plants/</loc></url>
 <url><loc>https://mega-engineering.github.io/NEWMEGA/critical-process-equipment/</loc></url>
+<url><loc>https://mega-engineering.github.io/NEWMEGA/downloads/</loc></url>
 <url><loc>https://mega-engineering.github.io/NEWMEGA/e-fuels-vs-ethanol-environmental-impact/</loc></url>
 <url><loc>https://mega-engineering.github.io/NEWMEGA/engineering-services/</loc></url>
 <url><loc>https://mega-engineering.github.io/NEWMEGA/evaporation-dryer/</loc></url>
@@ -26,7 +24,6 @@
 <url><loc>https://mega-engineering.github.io/NEWMEGA/fuel-ethanol/</loc></url>
 <url><loc>https://mega-engineering.github.io/NEWMEGA/gobardhan-scheme-2026/</loc></url>
 <url><loc>https://mega-engineering.github.io/NEWMEGA/high-gravity-fermentation-technical-insights-for-distillery-and-biofuel-plants/</loc></url>
-<url><loc>https://mega-engineering.github.io/NEWMEGA/high-gravity-fermentation/</loc></url>
 <url><loc>https://mega-engineering.github.io/NEWMEGA/indias-e85-ambition-opportunity-readiness-and-the-roadblocks-ahead/</loc></url>
 <url><loc>https://mega-engineering.github.io/NEWMEGA/industries/</loc></url>
 <url><loc>https://mega-engineering.github.io/NEWMEGA/life-industrial-export-manufacturing-how-mega-engineering-powers-global-industries/</loc></url>
@@ -51,6 +48,7 @@
 <url><loc>https://mega-engineering.github.io/NEWMEGA/es/contact-mega-engineering-epc-company/</loc></url>
 <url><loc>https://mega-engineering.github.io/NEWMEGA/es/craft-brewery-plants/</loc></url>
 <url><loc>https://mega-engineering.github.io/NEWMEGA/es/critical-process-equipment/</loc></url>
+<url><loc>https://mega-engineering.github.io/NEWMEGA/es/downloads/</loc></url>
 <url><loc>https://mega-engineering.github.io/NEWMEGA/es/engineering-services/</loc></url>
 <url><loc>https://mega-engineering.github.io/NEWMEGA/es/evaporation-dryer/</loc></url>
 <url><loc>https://mega-engineering.github.io/NEWMEGA/es/faqs/</loc></url>
@@ -73,6 +71,7 @@
 <url><loc>https://mega-engineering.github.io/NEWMEGA/fr/contact-mega-engineering-epc-company/</loc></url>
 <url><loc>https://mega-engineering.github.io/NEWMEGA/fr/craft-brewery-plants/</loc></url>
 <url><loc>https://mega-engineering.github.io/NEWMEGA/fr/critical-process-equipment/</loc></url>
+<url><loc>https://mega-engineering.github.io/NEWMEGA/fr/downloads/</loc></url>
 <url><loc>https://mega-engineering.github.io/NEWMEGA/fr/engineering-services/</loc></url>
 <url><loc>https://mega-engineering.github.io/NEWMEGA/fr/evaporation-dryer/</loc></url>
 <url><loc>https://mega-engineering.github.io/NEWMEGA/fr/faqs/</loc></url>
@@ -95,6 +94,7 @@
 <url><loc>https://mega-engineering.github.io/NEWMEGA/pt/contact-mega-engineering-epc-company/</loc></url>
 <url><loc>https://mega-engineering.github.io/NEWMEGA/pt/craft-brewery-plants/</loc></url>
 <url><loc>https://mega-engineering.github.io/NEWMEGA/pt/critical-process-equipment/</loc></url>
+<url><loc>https://mega-engineering.github.io/NEWMEGA/pt/downloads/</loc></url>
 <url><loc>https://mega-engineering.github.io/NEWMEGA/pt/engineering-services/</loc></url>
 <url><loc>https://mega-engineering.github.io/NEWMEGA/pt/evaporation-dryer/</loc></url>
 <url><loc>https://mega-engineering.github.io/NEWMEGA/pt/faqs/</loc></url>
@@ -117,6 +117,7 @@
 <url><loc>https://mega-engineering.github.io/NEWMEGA/ru/contact-mega-engineering-epc-company/</loc></url>
 <url><loc>https://mega-engineering.github.io/NEWMEGA/ru/craft-brewery-plants/</loc></url>
 <url><loc>https://mega-engineering.github.io/NEWMEGA/ru/critical-process-equipment/</loc></url>
+<url><loc>https://mega-engineering.github.io/NEWMEGA/ru/downloads/</loc></url>
 <url><loc>https://mega-engineering.github.io/NEWMEGA/ru/engineering-services/</loc></url>
 <url><loc>https://mega-engineering.github.io/NEWMEGA/ru/evaporation-dryer/</loc></url>
 <url><loc>https://mega-engineering.github.io/NEWMEGA/ru/faqs/</loc></url>

@@ -44,7 +44,7 @@ NAV_HTML = (
  f'<li class="mx-item"><a class="mx-link" href="{B_}">Home</a></li>'
  f'<li class="mx-item mx-has"><a class="mx-link" href="{B_}about-us/">About Us</a><button class="mx-sub" type="button" aria-expanded="false" aria-label="About Us menu"></button>'
  '<div class="mx-drop"><ul>'
- + _l('about-us/', 'Company Overview') + _l('faqs/', 'FAQs') + _l('contact-mega-engineering-epc-company/', 'Contact Details') +
+ + _l('about-us/', 'Company Overview') + _l('faqs/', 'FAQs') + _l('downloads/', 'Downloads') + _l('contact-mega-engineering-epc-company/', 'Contact Details') +
  '</ul></div></li>'
  f'<li class="mx-item mx-has mx-mega"><a class="mx-link" href="{B_}business-lines/">Business Lines</a><button class="mx-sub" type="button" aria-expanded="false" aria-label="Business Lines menu"></button>'
  '<div class="mx-drop"><div class="mx-cols">'

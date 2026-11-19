@@ -54,7 +54,8 @@ def document(title,desc,url,body,schema=None,image=''):
 def card(p,i):
  name=clean(p['title']);desc=clean(p.get('description','')[:150]);category=clean(p.get('category') or 'Engineering Insights')
  img=p.get('cover') or f'{BASE}assets/design-image-0{(i%9)+1}.jpg'
- return f'''<article class="editorial-card reveal" data-blog-card data-category="{category}"><a href="{BASE}{clean(p['slug'])}/"><img class="editorial-image" loading="lazy" src="{clean(img)}" alt="{name}" onerror="this.src='{BASE}assets/hero-1.jpg'"></a><div class="editorial-body"><div class="editorial-meta"><span class="category-pill">{category}</span>{clean(p.get('date') or '')}</div><h3><a href="{BASE}{clean(p['slug'])}/">{name}</a></h3><p>{desc}</p><a class="view-link" href="{BASE}{clean(p['slug'])}/">Read article →</a></div></article>'''
+ if img.endswith('.gif') and (ROOT/img.replace(BASE,'',1).replace('.gif','-poster.jpg')).exists(): img=img.replace('.gif','-poster.jpg')
+ return f'''<article class="editorial-card reveal" data-blog-card data-category="{category}"><a href="{BASE}{clean(p['slug'])}/"><img class="editorial-image" loading="lazy" decoding="async" src="{clean(img)}" alt="{name}" onerror="this.src='{BASE}assets/hero-1.jpg'"></a><div class="editorial-body"><div class="editorial-meta"><span class="category-pill">{category}</span>{clean(p.get('date') or '')}</div><h3><a href="{BASE}{clean(p['slug'])}/">{name}</a></h3><p>{desc}</p><a class="view-link" href="{BASE}{clean(p['slug'])}/">Read article →</a></div></article>'''
 
 def build():
  posts=read_posts(); used={p['slug'] for p in posts}
@@ -116,7 +117,7 @@ def build():
  for key in ['our-blogs-2','blog']:
   path=ROOT/key;path.mkdir(exist_ok=True);(path/'index.html').write_text(content.replace('https://www.mega.tc/our-blogs-2/',CANON+key+'/') if key=='blog' else content,encoding='utf-8')
  # sitemap preview includes all original static paths + new articles
- allpages=[f'/{p.parent.relative_to(ROOT).as_posix()}/' if p.parent!=ROOT else '/' for p in ROOT.rglob('index.html') if not any(x in p.parts for x in ('.git','content','scripts'))]
+ allpages=[f'/{p.parent.relative_to(ROOT).as_posix()}/' if p.parent!=ROOT else '/' for p in ROOT.rglob('index.html') if not any(x in p.parts for x in ('.git','content','scripts','admin')) and 'http-equiv="refresh"' not in p.read_text(encoding='utf-8',errors='ignore')]
  allpages=sorted(set(allpages))
  sitemap=lambda base:'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'+''.join(f'<url><loc>{html.escape(base+slug.lstrip("/"))}</loc></url>\n' for slug in allpages)+'</urlset>\n'
  (ROOT/'sitemap-preview.xml').write_text(sitemap('https://mega-engineering.github.io/NEWMEGA/'),encoding='utf-8')

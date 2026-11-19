@@ -1,7 +1,7 @@
 ---
 title: 'High-Gravity Fermentation in Grain-Based Ethanol Production: Process, Yeast
   and Performance'
-published: true
+published: false
 date: '2026-10-24'
 author: Arnab Nandi
 category: Ethanol & Distillery
