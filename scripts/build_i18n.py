@@ -68,7 +68,7 @@ NAV_HTML = (
  '<div><p class="mx-h">Distillery &amp; Ethanol</p><ul>' + _l('fuel-ethanol/', 'Fuel Ethanol Plants') + _l('craft-brewery-plants/', 'Craft Brewery Plants') + '</ul></div>'
  '<div><p class="mx-h">CO₂ &amp; Biogas</p><ul>' + _l('co2-recovery-plants/', 'CO₂ Recovery Plants') + _l('bio-cng-biogas-plant-epc-mega-engineering/', 'Biogas &amp; Bio-CNG') + _l('cbg-technology-partnership-oekobit/', 'CBG Plants · OEKOBIT Partnership') + '</ul></div>'
  '<div><p class="mx-h">Evaporation &amp; ZLD</p><ul>' + _l('evaporation-dryer/', 'Evaporation &amp; Dryers') + _l('vinasse-dryer-manufacturer-from-india/', 'Vinasse Spray Dryer') + _l('zero-liquid-discharge-system/', 'Zero Liquid Discharge') + '</ul></div>'
- '<div><p class="mx-h">Equipment &amp; Skids</p><ul>' + _l('modular-process-skid/', 'Modular Process Skids') + _l('critical-process-equipment/', 'Critical Process Equipment') + _l('solvent-recovery-system/', 'Solvent Recovery Systems') + _l('automation-and-controls/', 'Automation &amp; Controls') + '</ul></div>'
+ '<div><p class="mx-h">Equipment &amp; Skids</p><ul>' + _l('modular-process-skid/', 'Modular Process Skids') + _l('critical-process-equipment/', 'Critical Process Equipment') + '</ul></div>'
  '<div><p class="mx-h">Services</p><ul>' + _l('engineering-services/', 'Engineering Services') + _l('project-management-services/', 'Project Management Services') + _l('industries/', 'Industries We Serve') + _l('business-lines/', 'All Business Lines →') + '</ul></div>'
  '</div></div></li>'
  f'<li class="mx-item mx-has"><a class="mx-link" href="{B_}projects/">Projects</a><button class="mx-sub" type="button" aria-expanded="false" aria-label="Projects menu"></button>'

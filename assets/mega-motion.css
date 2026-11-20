@@ -208,7 +208,7 @@ ol.steps li.mx-in::before{animation:mxPop .6s cubic-bezier(.2,.9,.3,1.4)}
 /* =====================================================================
    Homepage video hero
    ===================================================================== */
-.mx-hero{position:relative;min-height:100vh;min-height:100svh;display:flex;align-items:flex-end;color:#fff;overflow:hidden;background:#0c1720 url('/NEWMEGA/assets/drone-poster.jpg') center/cover}
+.mx-hero{position:relative;min-height:100vh;min-height:100svh;display:flex;align-items:flex-end;color:#fff;overflow:hidden;background:#0c1720 url('/NEWMEGA/assets/hero-poster.jpg') center/cover}
 .mx-hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;max-width:none}
 .mx-hero-shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(6,12,18,.55) 0%,rgba(6,12,18,.15) 30%,rgba(6,12,18,.35) 60%,rgba(6,12,18,.82) 100%),linear-gradient(90deg,rgba(6,12,18,.55) 0%,rgba(6,12,18,0) 65%)}
 .mx-hero-inner{position:relative;z-index:1;width:100%;max-width:1240px;margin:0 auto;padding:140px 20px 34px}
@@ -758,3 +758,6 @@ html[dir="rtl"] .mx-langnote{font-family:Cairo,"Segoe UI",Tahoma,sans-serif}
  .mx-tl li{flex:0 0 min(72%,300px);scroll-snap-align:start;background:#fff;border:1px solid #dce5ee;border-radius:14px;padding:0 14px 16px}
  .mx-tl h3{overflow-wrap:break-word;hyphens:auto}
 }
+
+/* round 16: close-up leader photos */
+.about-x .leader-photo img{object-position:50% 18%}
