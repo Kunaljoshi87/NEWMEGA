@@ -306,3 +306,31 @@
   })();
   onScroll();
 })();
+
+/* ---- round 14: language dropdown — close on outside click / Esc, remember the choice ---- */
+(function () {
+  var dd = document.querySelectorAll('details.mx-lang');
+  if (!dd.length) return;
+  document.addEventListener('click', function (e) {
+    Array.prototype.forEach.call(dd, function (d) { if (d.open && !d.contains(e.target)) d.open = false; });
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') Array.prototype.forEach.call(dd, function (d) { if (d.open) { d.open = false; d.querySelector('summary').focus(); } });
+  });
+  Array.prototype.forEach.call(document.querySelectorAll('.mx-lmenu a[data-lang]'), function (a) {
+    a.addEventListener('click', function () { try { localStorage.setItem('mx-lang', a.getAttribute('data-lang')); } catch (err) {} });
+  });
+  // a visitor who picked a language keeps it: English pages that have a translation open in that language
+  try {
+    var want = localStorage.getItem('mx-lang'), here = document.documentElement.lang || 'en';
+    if (want && want !== 'en' && here === 'en' && !/[?&]lang=en/.test(location.search)) {
+      var link = document.querySelector('.mx-lmenu a[data-lang="' + want + '"]');
+      var home = /\/NEWMEGA\/$|^\/$/.test(location.pathname);
+      if (link) {
+        var target = link.getAttribute('href');
+        var isFallback = !home && /\/(es|fr|pt|ru|ar)\/$/.test(target);
+        if (!isFallback && target !== location.pathname) location.replace(target + location.hash);
+      }
+    }
+  } catch (err) {}
+})();

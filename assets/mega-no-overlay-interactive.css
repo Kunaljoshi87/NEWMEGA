@@ -1,5 +1,5 @@
 /* MEGA interactive website upgrade: no photo files changed, no decorative blue overlays */
-body .hero-art{background-image:url('/NEWMEGA/assets/hero-1.jpg')!important;background-size:cover!important;background-position:center!important;isolation:isolate;overflow:hidden}
+body .hero-art{background-image:var(--hero-img,url('/NEWMEGA/assets/hero-1.jpg'))!important;background-size:cover!important;background-position:var(--hero-pos,center)!important;isolation:isolate;overflow:hidden}
 body .hero-art::before,body .hero-art::after{content:none!important;display:none!important;background:none!important;opacity:0!important}
 body .hero-art>span{display:none!important}
 body .hero-art:before{box-shadow:none!important}

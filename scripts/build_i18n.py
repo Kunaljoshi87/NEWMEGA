@@ -13,8 +13,19 @@ import i18n_core as C
 ROOT = Path(__file__).resolve().parents[1]
 BASE = '/NEWMEGA/'
 CANON = 'https://www.mega.tc/'
-LANGS = ['en', 'es', 'fr', 'pt', 'ru']
-NAMES = {'en': 'English', 'es': 'Español', 'fr': 'Français', 'pt': 'Português', 'ru': 'Русский'}
+LANGS = ['en', 'es', 'fr', 'pt', 'ru', 'ar']
+NAMES = {'en': 'English', 'es': 'Español', 'fr': 'Français', 'pt': 'Português', 'ru': 'Русский', 'ar': 'العربية'}
+RTL = {'ar'}
+AR_FONT = '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&amp;display=swap"/>'
+# small built-in flag drawings (emoji flags do not show on Windows)
+FLAGS = {
+ 'en': '<svg viewBox="0 0 60 30" aria-hidden="true"><clipPath id="fgb"><path d="M0 0v30h60V0z"/></clipPath><clipPath id="fgb2"><path d="M30 15h30v15zv15H0zH0V0zV0h30z"/></clipPath><g clip-path="url(#fgb)"><path d="M0 0v30h60V0z" fill="#012169"/><path d="M0 0l60 30m0-30L0 30" stroke="#fff" stroke-width="6"/><path d="M0 0l60 30m0-30L0 30" clip-path="url(#fgb2)" stroke="#C8102E" stroke-width="4"/><path d="M30 0v30M0 15h60" stroke="#fff" stroke-width="10"/><path d="M30 0v30M0 15h60" stroke="#C8102E" stroke-width="6"/></g></svg>',
+ 'es': '<svg viewBox="0 0 30 20" aria-hidden="true"><path fill="#AA151B" d="M0 0h30v20H0z"/><path fill="#F1BF00" d="M0 5h30v10H0z"/></svg>',
+ 'fr': '<svg viewBox="0 0 30 20" aria-hidden="true"><path fill="#002654" d="M0 0h10v20H0z"/><path fill="#fff" d="M10 0h10v20H10z"/><path fill="#CE1126" d="M20 0h10v20H20z"/></svg>',
+ 'pt': '<svg viewBox="0 0 30 20" aria-hidden="true"><path fill="#046A38" d="M0 0h12v20H0z"/><path fill="#DA291C" d="M12 0h18v20H12z"/><circle cx="12" cy="10" r="4.2" fill="#FFE900"/><circle cx="12" cy="10" r="2.6" fill="#DA291C"/><path fill="#fff" d="M10.9 8.6h2.2v2.4a1.1 1.1 0 0 1-2.2 0z"/></svg>',
+ 'ru': '<svg viewBox="0 0 30 20" aria-hidden="true"><path fill="#fff" d="M0 0h30v7H0z"/><path fill="#0039A6" d="M0 7h30v6H0z"/><path fill="#D52B1E" d="M0 13h30v7H0z"/></svg>',
+ 'ar': '<svg viewBox="0 0 30 20" aria-hidden="true"><path fill="#00732F" d="M0 0h30v6.7H0z"/><path fill="#fff" d="M0 6.7h30v6.6H0z"/><path fill="#000" d="M0 13.3h30V20H0z"/><path fill="#FF0000" d="M0 0h8v20H0z"/></svg>',
+}
 SKIP_DIRS = {'.git', '.github', 'content', 'scripts', 'assets', 'media', 'i18n', 'admin', 'category'} | set(LANGS)
 MOTION = (f'<link rel="stylesheet" href="{BASE}assets/mega-motion.css"/>', f'<script defer src="{BASE}assets/mega-motion.js"></script>')
 RU_FONT = '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@500;600;700&amp;display=swap"/>'
@@ -109,12 +120,16 @@ def canon(lang, slug):
     return CANON + pre + (slug + '/' if slug else '')
 
 def switcher(slug, lang, published):
-    links = []
+    """Language dropdown: flag + short name, every option opens the same page in that language."""
+    items = []
     for l in LANGS:
         target = slug if (l == 'en' or slug in published) else ''
         cur = ' aria-current="true"' if l == lang else ''
-        links.append(f'<a href="{url(l, target)}" hreflang="{l}" lang="{l}"{cur}>{l.upper()}</a>')
-    return '<nav class="lang-switch" aria-label="Language">' + ''.join(links) + '</nav>'
+        items.append(f'<li><a href="{url(l, target)}" hreflang="{l}" lang="{l}" data-lang="{l}"{cur}>'
+                     f'<span class="mx-flag">{FLAGS[l]}</span><span class="mx-lname">{NAMES[l]}</span><b>{l.upper()}</b></a></li>')
+    return ('<details class="mx-lang" translate="no"><summary aria-label="Language: ' + NAMES[lang] + '">'
+            f'<span class="mx-flag">{FLAGS[lang]}</span><b>{lang.upper()}</b><i class="mx-lchev" aria-hidden="true"></i></summary>'
+            '<ul class="mx-lmenu">' + ''.join(items) + '</ul></details>')
 
 def hreflangs(slug, published):
     langs = ['en'] + ([l for l in LANGS[1:]] if slug in published else [])
@@ -124,6 +139,7 @@ def hreflangs(slug, published):
 def decorate(html, slug, lang, published):
     """Switcher, hreflang, motion layer. Idempotent."""
     html = re.sub(r'<nav\b[^>]*class="lang-switch"[^>]*>.*?</nav>', '', html, flags=re.S)
+    html = re.sub(r'<details class="mx-lang".*?</details>', '', html, flags=re.S)
     html = re.sub(r'<div class="lang-bar">\s*</div>', '', html)
     html = re.sub(r'<link\b(?=[^>]*\bhreflang=)[^>]*>', '', html)
     # always light design: stop phones/browsers from auto-darkening (text vanished in dark mode)
@@ -147,6 +163,10 @@ def decorate(html, slug, lang, published):
         html = html.replace('</body>', MOTION[1] + '</body>', 1)
     if lang == 'ru' and 'Roboto+Condensed' not in html:
         html = html.replace('</head>', RU_FONT + '</head>', 1)
+    if lang in RTL:
+        html = re.sub(r'<html\b([^>]*)>', lambda m: '<html' + re.sub(r'\s+dir="[^"]*"', '', m.group(1)) + ' dir="rtl">', html, count=1)
+        if 'family=Cairo' not in html:
+            html = html.replace('</head>', AR_FONT + f'<link rel="stylesheet" href="{BASE}assets/mega-rtl.css"/></head>', 1)
     return html
 
 JS_CACHE = {}
@@ -222,7 +242,7 @@ def main():
         if sm.exists():
             x = sm.read_text(encoding='utf-8')
             extra = ''.join(f'<url><loc>{base}{l}/{(s + "/") if s else ""}</loc></url>\n' for l in LANGS[1:] for s in sorted(published))
-            x = re.sub(r'<url><loc>[^<]*/(?:es|fr|pt|ru)/[^<]*</loc></url>\n', '', x)
+            x = re.sub(r'<url><loc>[^<]*/(?:es|fr|pt|ru|ar)/[^<]*</loc></url>\n', '', x)
             sm.write_text(x.replace('</urlset>', extra + '</urlset>'), encoding='utf-8')
     print('Languages built for', len(published), 'pages. Untranslated strings:', report)
 

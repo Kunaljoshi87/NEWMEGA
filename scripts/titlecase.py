@@ -86,7 +86,7 @@ def apply(html):
 
 if __name__ == '__main__':
     root = Path(__file__).resolve().parents[1]
-    skip = {'es', 'fr', 'pt', 'ru', 'assets', 'media', 'content', 'scripts', 'i18n', '.git', '.github'}
+    skip = {'es', 'fr', 'pt', 'ru', 'ar', 'assets', 'media', 'content', 'scripts', 'i18n', '.git', '.github'}
     n = 0
     for p in [root / 'index.html'] + sorted(root.glob('*/index.html')):
         if p.parent.name in skip:

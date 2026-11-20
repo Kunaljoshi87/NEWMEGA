@@ -1,0 +1,34 @@
+/* Arabic (right-to-left) layout for the MEGA website. Loaded only on /ar/ pages. */
+html[dir="rtl"] body,html[dir="rtl"] input,html[dir="rtl"] textarea,html[dir="rtl"] select,html[dir="rtl"] button{font-family:Cairo,"Segoe UI",Tahoma,Arial,sans-serif!important}
+html[dir="rtl"] h1,html[dir="rtl"] h2,html[dir="rtl"] h3,html[dir="rtl"] h4,html[dir="rtl"] h5,html[dir="rtl"] h6,
+html[dir="rtl"] .eyebrow,html[dir="rtl"] .mx-hero-kicker,html[dir="rtl"] .mx-btn,html[dir="rtl"] .btn,html[dir="rtl"] .button,
+html[dir="rtl"] .mx-link,html[dir="rtl"] .mx-drop a,html[dir="rtl"] b,html[dir="rtl"] strong,html[dir="rtl"] small,html[dir="rtl"] th,html[dir="rtl"] td,html[dir="rtl"] summary,html[dir="rtl"] p,html[dir="rtl"] li,html[dir="rtl"] a{font-family:Cairo,"Segoe UI",Tahoma,Arial,sans-serif!important}
+/* Arabic letters must stay joined: no letter spacing, no capitals */
+html[dir="rtl"] *{letter-spacing:0!important;text-transform:none!important}
+html[dir="rtl"] h1,html[dir="rtl"] h2,html[dir="rtl"] h3{line-height:1.35}
+html[dir="rtl"] body{line-height:1.85}
+/* text that was set to start on the left */
+html[dir="rtl"] .article,html[dir="rtl"] .article p,html[dir="rtl"] .article li,html[dir="rtl"] .hero-inner,html[dir="rtl"] .mx-hero-inner,html[dir="rtl"] td,html[dir="rtl"] th,html[dir="rtl"] summary,html[dir="rtl"] details,html[dir="rtl"] .mx-help-card,html[dir="rtl"] .mx-contact,html[dir="rtl"] footer{text-align:right}
+html[dir="rtl"] ul,html[dir="rtl"] ol{padding-right:1.3em;padding-left:0}
+html[dir="rtl"] .mx-menu,html[dir="rtl"] .mx-drop ul,html[dir="rtl"] .mx-lmenu,html[dir="rtl"] .mx-tl,html[dir="rtl"] .mx-legal{padding-right:0}
+/* arrows point the reading way */
+html[dir="rtl"] .mx-arr{display:inline-block;transform:scaleX(-1)}
+/* phone numbers, emails, codes and units read left to right inside Arabic text */
+html[dir="rtl"] a[href^="tel:"],html[dir="rtl"] a[href^="mailto:"],html[dir="rtl"] address,html[dir="rtl"] code{direction:ltr;unicode-bidi:isolate}
+html[dir="rtl"] address{text-align:right}
+/* language menu opens towards the page */
+html[dir="rtl"] .mx-lmenu{right:auto;left:0}
+html[dir="rtl"] .mx-lmenu a b{margin-left:0;margin-right:auto}
+html[dir="rtl"] .mx-lang{margin-left:0;margin-right:10px}
+@media (max-width:1100px){html[dir="rtl"] .mx-header .mx-lang{margin-right:auto;margin-left:0}}
+/* small decorative lines and borders swap sides */
+html[dir="rtl"] .mx-eb.mx-on::before{margin-right:0;margin-left:12px}
+html[dir="rtl"] .mx-career-intro{border-left:0;border-right:4px solid #90A840;padding:4px 22px 4px 0}
+html[dir="rtl"] .mx-career-art{padding:34px 34px 22px 0;justify-self:start}
+html[dir="rtl"] .mx-career-art .mx-hex{left:auto;right:0}
+html[dir="rtl"] .mx-career-art .mx-cline{left:auto;right:34px}
+html[dir="rtl"] blockquote{border-left:0;border-right:4px solid #90A840;padding-left:0;padding-right:18px}
+html[dir="rtl"] .mx-tl::before,html[dir="rtl"] .mx-tl::after{left:auto;right:4%}
+html[dir="rtl"] .mx-tl::after{background:linear-gradient(270deg,#36618E,#489DD3,#90A840)}
+@media (max-width:760px){html[dir="rtl"] .mx-tl::before,html[dir="rtl"] .mx-tl::after{right:16px}}
+html[dir="rtl"] .mx-dropdown,html[dir="rtl"] .mx-drop{text-align:right}
