@@ -29,6 +29,8 @@ jobs:
         run: python scripts/titlecase.py
       - name: Build language versions (ES, FR, PT, RU)
         run: python scripts/build_i18n.py
+      - name: Fresh design-file links (no old cached styles)
+        run: python scripts/cachebust.py
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v4
         with:

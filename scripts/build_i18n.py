@@ -176,7 +176,7 @@ def localize_links(html, lang, published, table):
             return f'href="{url(lang, slug)}{rest}"'
         return m.group(0)
     html = re.sub(r'href="/NEWMEGA/([^"#?]*)([#?][^"]*)?"', href, html)
-    html = re.sub(r'src="(/NEWMEGA/assets/[\w.-]+\.js)"', lambda m: f'src="{local_js(lang, m.group(1), table)}"', html)
+    html = re.sub(r'src="(/NEWMEGA/assets/[\w.-]+\.js)(?:\?v=[0-9a-f]+)?"', lambda m: f'src="{local_js(lang, m.group(1), table)}"', html)
     return html
 
 def set_canonical(html, lang, slug):

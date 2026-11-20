@@ -262,5 +262,47 @@
       c.addEventListener('mouseleave', function () { c.style.transform = ''; });
     });
   }
+    /* ---- round 13: photo frames, light on dark bands, eyebrow lines, magnetic buttons ---- */
+  (function () {
+    var still = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var fine = window.matchMedia && matchMedia('(hover: hover) and (pointer: fine)').matches;
+    var main = document.querySelector('main') || document.body;
+    Array.prototype.forEach.call(main.querySelectorAll('figure, .mx-ind, .mx-dl-cover'), function (f) {
+      if (f.closest('header, footer, table, .mx-cbg-table, .mx-tl') || !f.querySelector('img')) return;
+      var img = f.querySelector('img');
+      if (img.width && img.width < 120 && img.complete) return;
+      f.classList.add('mx-pfx');
+    });
+    function dark(el) {
+      var c = getComputedStyle(el).color.match(/\d+/g);
+      return c && (0.299 * c[0] + 0.587 * c[1] + 0.114 * c[2]) > 190;
+    }
+    Array.prototype.forEach.call(document.querySelectorAll('.band, .cta, .mx-cta-band, .mx-page-hero, .mx-news'), function (s) {
+      if (!dark(s) || s.querySelector(':scope > .mx-glow')) return;
+      s.classList.add('mx-glowhost');
+      var g = document.createElement('span'); g.className = 'mx-glow'; g.setAttribute('aria-hidden', 'true');
+      s.insertBefore(g, s.firstChild);
+      if (fine && !still) s.addEventListener('mousemove', function (e) {
+        var r = s.getBoundingClientRect();
+        g.style.setProperty('--mx-x', (e.clientX - r.left) + 'px');
+        g.style.setProperty('--mx-y', (e.clientY - r.top) + 'px');
+      });
+    });
+    var ebs = document.querySelectorAll('main .eyebrow, .about-x .eyebrow');
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function (es) {
+        es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('mx-on'); io.unobserve(e.target); } });
+      }, { threshold: 0.6 });
+      Array.prototype.forEach.call(ebs, function (e) { e.classList.add('mx-eb'); io.observe(e); });
+    }
+    if (fine && !still) Array.prototype.forEach.call(document.querySelectorAll('main .btn, main .mx-btn, main .button, .mx-cta-band a'), function (b) {
+      b.classList.add('mx-mag');
+      b.addEventListener('mousemove', function (e) {
+        var r = b.getBoundingClientRect(), x = e.clientX - r.left - r.width / 2, y = e.clientY - r.top - r.height / 2;
+        b.style.translate = Math.max(-8, Math.min(8, x * 0.22)).toFixed(1) + 'px ' + Math.max(-6, Math.min(6, y * 0.3)).toFixed(1) + 'px';
+      });
+      b.addEventListener('mouseleave', function () { b.style.translate = ''; });
+    });
+  })();
   onScroll();
 })();
