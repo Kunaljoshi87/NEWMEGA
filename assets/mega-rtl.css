@@ -32,3 +32,7 @@ html[dir="rtl"] .mx-tl::before,html[dir="rtl"] .mx-tl::after{left:auto;right:4%}
 html[dir="rtl"] .mx-tl::after{background:linear-gradient(270deg,#36618E,#489DD3,#90A840)}
 @media (max-width:760px){html[dir="rtl"] .mx-tl::before,html[dir="rtl"] .mx-tl::after{right:16px}}
 html[dir="rtl"] .mx-dropdown,html[dir="rtl"] .mx-drop{text-align:right}
+/* English-only pages inside the Arabic site read left to right */
+html[dir="rtl"] [dir="ltr"],html[dir="rtl"] [dir="ltr"] p,html[dir="rtl"] [dir="ltr"] li,html[dir="rtl"] [dir="ltr"] .hero-inner,html[dir="rtl"] [dir="ltr"] td,html[dir="rtl"] [dir="ltr"] th{text-align:left}
+html[dir="rtl"] [dir="ltr"] ul,html[dir="rtl"] [dir="ltr"] ol{padding-left:1.3em;padding-right:0}
+html[dir="rtl"] [dir="ltr"] .mx-arr{transform:none}

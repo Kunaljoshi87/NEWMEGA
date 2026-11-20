@@ -16,6 +16,12 @@ CANON = 'https://www.mega.tc/'
 LANGS = ['en', 'es', 'fr', 'pt', 'ru', 'ar']
 NAMES = {'en': 'English', 'es': 'Español', 'fr': 'Français', 'pt': 'Português', 'ru': 'Русский', 'ar': 'العربية'}
 RTL = {'ar'}
+# shown on pages whose main text has not been translated yet (new blog posts, legal pages)
+NOTE = {'es': 'Esta página está disponible actualmente solo en inglés.',
+        'fr': 'Cette page est actuellement disponible uniquement en anglais.',
+        'pt': 'Esta página está disponível atualmente apenas em inglês.',
+        'ru': 'Эта страница пока доступна только на английском языке.',
+        'ar': 'هذه الصفحة متاحة حالياً باللغة الإنجليزية فقط.'}
 AR_FONT = '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&amp;display=swap"/>'
 # small built-in flag drawings (emoji flags do not show on Windows)
 FLAGS = {
@@ -136,7 +142,7 @@ def hreflangs(slug, published):
     tags = ''.join(f'<link rel="alternate" hreflang="{l}" href="{canon(l, slug)}"/>' for l in langs)
     return tags + f'<link rel="alternate" hreflang="x-default" href="{canon("en", slug)}"/>'
 
-def decorate(html, slug, lang, published):
+def decorate(html, slug, lang, published, full=None):
     """Switcher, hreflang, motion layer. Idempotent."""
     html = re.sub(r'<nav\b[^>]*class="lang-switch"[^>]*>.*?</nav>', '', html, flags=re.S)
     html = re.sub(r'<details class="mx-lang".*?</details>', '', html, flags=re.S)
@@ -156,7 +162,7 @@ def decorate(html, slug, lang, published):
     # company contact details in the footer of the older page templates
     if 'class="mx-contact"' not in html:
         html = re.sub(r'(<footer class="(?:footer|mega-foot)"[^>]*>\s*<div class="(?:wrap|mega-wrap)">)', lambda m: m.group(1) + CONTACT_BLOCK, html, count=1)
-    html = html.replace('</head>', hreflangs(slug, published) + '</head>', 1)
+    html = html.replace('</head>', hreflangs(slug, full if full is not None else published) + '</head>', 1)
     if 'mega-motion.css' not in html:
         html = html.replace('</head>', MOTION[0] + '</head>', 1)
     if 'mega-motion.js' not in html:
@@ -207,44 +213,64 @@ def set_canonical(html, lang, slug):
     html = re.sub(r'(<meta content=")[^"]*("[^>]*property="og:url")', r'\1' + c + r'\2', html)
     return html
 
+def is_redirect(html):
+    return 'http-equiv="refresh"' in html[:3000]
+
+def partial_page(html, lang):
+    """Language copy of a page whose body is still English: translated menus, an English-only
+    note, the body marked as English, and kept out of search results (canonical = English)."""
+    note = (f'<div class="mx-langnote" role="note"><span aria-hidden="true">ⓘ</span> {NOTE[lang]}</div>')
+    html = re.sub(r'(</header>)', r'\1' + note, html, count=1)
+    attrs = ' lang="en"' + (' dir="ltr"' if lang in RTL else '')
+    html = re.sub(r'<main\b(?![^>]*\blang=)', '<main' + attrs, html, count=1)
+    html = re.sub(r'<section class="hero"', '<section class="hero"' + attrs, html, count=1)
+    if 'name="robots"' in html:
+        html = re.sub(r'<meta name="robots" content="[^"]*"\s*/?>', '<meta name="robots" content="noindex,follow"/>', html)
+    else:
+        html = html.replace('</head>', '<meta name="robots" content="noindex,follow"/></head>', 1)
+    return html
+
 def main():
     i18n = ROOT / 'i18n'
-    published = set(json.loads((i18n / 'pages.json').read_text(encoding='utf-8')))
+    full = set(json.loads((i18n / 'pages.json').read_text(encoding='utf-8')))
     pages = en_pages()
     for l in LANGS[1:]:
         shutil.rmtree(ROOT / l, ignore_errors=True)
     shutil.rmtree(ROOT / 'assets' / 'i18n', ignore_errors=True)
     report = {}
     sources = {slug: unify(p.read_text(encoding='utf-8')) for slug, p in pages.items()}
+    # every English page gets a copy in every language, so switching language always opens the same page
+    published = {s for s, h in sources.items() if not is_redirect(h)}
     for lang in LANGS[1:]:
         f = i18n / f'{lang}.json'
         table = json.loads(f.read_text(encoding='utf-8')) if f.exists() else {}
         table = {C.norm(k): v for k, v in table.items()}
         missing = set()
         for slug in sorted(published):
-            if slug not in sources:
-                continue
             out, miss = C.apply(sources[slug], table, lang)
-            missing |= miss
-            out = set_canonical(out, lang, slug)
+            if slug in full:
+                missing |= miss
+            out = set_canonical(out, lang, slug) if slug in full else set_canonical(out, 'en', slug)
             out = localize_links(out, lang, published, table)
-            out = decorate(out, slug, lang, published)
+            out = decorate(out, slug, lang, published, full)
+            if slug not in full:
+                out = partial_page(out, lang)
             dest = ROOT / lang / slug if slug else ROOT / lang
             dest.mkdir(parents=True, exist_ok=True)
             (dest / 'index.html').write_text(out, encoding='utf-8')
         report[lang] = len(missing)
         (i18n / f'missing-{lang}.txt').write_text('\n'.join(sorted(missing)), encoding='utf-8')
     for slug, p in pages.items():
-        p.write_text(decorate(sources[slug], slug, 'en', published), encoding='utf-8')
-    # sitemaps
+        p.write_text(decorate(sources[slug], slug, 'en', published, full) if slug in published else sources[slug], encoding='utf-8')
+    # sitemaps list the fully translated pages
     for name, base in (('sitemap-preview.xml', 'https://mega-engineering.github.io/NEWMEGA/'), ('sitemap-production.xml', CANON)):
         sm = ROOT / name
         if sm.exists():
             x = sm.read_text(encoding='utf-8')
-            extra = ''.join(f'<url><loc>{base}{l}/{(s + "/") if s else ""}</loc></url>\n' for l in LANGS[1:] for s in sorted(published))
+            extra = ''.join(f'<url><loc>{base}{l}/{(s + "/") if s else ""}</loc></url>\n' for l in LANGS[1:] for s in sorted(full))
             x = re.sub(r'<url><loc>[^<]*/(?:es|fr|pt|ru|ar)/[^<]*</loc></url>\n', '', x)
             sm.write_text(x.replace('</urlset>', extra + '</urlset>'), encoding='utf-8')
-    print('Languages built for', len(published), 'pages. Untranslated strings:', report)
+    print('Languages built for', len(published), 'pages (' + str(len(full)) + ' fully translated). Untranslated strings:', report)
 
 if __name__ == '__main__':
     main()
